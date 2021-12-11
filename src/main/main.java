@@ -10,6 +10,7 @@ import javafx.application.*;
 import javafx.stage.*;
 import javafx.geometry.*;
 import javafx.scene.*;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -43,7 +44,7 @@ public class main extends Application{
 		}
 		
 		Title title = new Title ("Art  of  Element");
-		title.setTranslateX(337.5);
+		title.setTranslateX(287.5);
 		title.setTranslateY(200);
 		
 		MenuBox vbox = new MenuBox(
@@ -53,6 +54,8 @@ public class main extends Application{
 				new MenuItem("Exit"));
 		vbox.setTranslateX(425);
 		vbox.setTranslateY(300);
+		Button exitBtn = new Button();
+		
 		
 		root.getChildren().addAll(title,vbox);
 		
@@ -62,21 +65,21 @@ public class main extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		Scene scene = new Scene(createContent());
-		primaryStage.setTitle("VIDEO GAME");
+		primaryStage.setTitle("ArtOfElement");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 	
 	private static class Title extends StackPane{
 		public Title(String name) {
-			Rectangle bg = new Rectangle(375, 60);
+			Rectangle bg = new Rectangle(475, 60);
 			bg.setStroke(Color.BLACK);
 			bg.setStrokeWidth(2);
 			bg.setFill(null);
 			
 			Text text = new Text(name);
 			text.setFill(Color.BLACK);
-			text.setFont(Font.font("Times New Roman", FontWeight.SEMI_BOLD, 50));
+			text.setFont(Font.font("Consolas", FontWeight.SEMI_BOLD, 50));
 			
 			setAlignment(Pos.CENTER);
 			getChildren().addAll(bg,text);
@@ -117,7 +120,7 @@ public class main extends Application{
 			
 			Text text = new Text(name);
 			text.setFill(Color.DARKGREY);
-			text.setFont(Font.font("Times New Roman", FontWeight.SEMI_BOLD,20));
+			text.setFont(Font.font("Consolas", FontWeight.SEMI_BOLD,20));
 			
 			setAlignment(Pos.CENTER);
 			getChildren().addAll(bg, text);
@@ -133,7 +136,7 @@ public class main extends Application{
 			});
 			setOnMousePressed(event -> {
 				bg.setFill(Color.DARKVIOLET);
-				
+				if(name.equals("Exit")) System.exit(0);
 			});
 			
 			setOnMouseReleased(event -> {
@@ -142,6 +145,8 @@ public class main extends Application{
 			
 			}
 		}
+	
+	
 
 	public static void main(String[] args) {
 		
