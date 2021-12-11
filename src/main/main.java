@@ -137,6 +137,7 @@ public class main extends Application{
 			setOnMousePressed(event -> {
 				bg.setFill(Color.DARKVIOLET);
 				if(name.equals("Exit")) System.exit(0);
+				//if(name.equals("Play")) 
 			});
 			
 			setOnMouseReleased(event -> {
