@@ -17,6 +17,7 @@ public class ImageHolder
     public Image potionBlue;
     public Image potionRed;
     public Image potionPurple;
+    public Image potionGreen;
     public Image gameBg1;
     public Image gameBg2;
     public Image gameBg3;
@@ -42,6 +43,7 @@ public class ImageHolder
         this.potionBlue = this.loadImage("blue1", "png");
         this.potionRed = this.loadImage("red1", "png");
         this.potionPurple = this.loadImage("purple1", "png");
+        this.potionGreen = this.loadImage("green1", "png");
         }
     
     private Image loadImage(String name, String fileType) {

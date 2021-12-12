@@ -1,5 +1,6 @@
 package entity;
 
+import constants.ImageHolder;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -7,7 +8,8 @@ import javafx.scene.image.Image;
 public class ItemdropHealth extends Itemdrop{
 
 	public ItemdropHealth(Point2D position, boolean isStatic, boolean isDestroy, boolean isVisible, Image sprite, int z, Elemental element) {
-		super(position, isStatic, isDestroy, isVisible, sprite, z, element);
+		super(position, isStatic, isDestroy, isVisible, sprite, z, Elemental.DEFAULT);
+		this.sprite = ImageHolder.getInstance().potionGreen;
 		// TODO Auto-generated constructor stub
 	}
 

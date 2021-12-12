@@ -16,7 +16,7 @@ public class Boss2 extends Boss{
 	}
 	public Boss2(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
 			Point2D center, int idx, List<Image> currentImage, Image dead, ProgressBar healthBar, Elemental element) {
-		super("Grim Reaper", "Reaper king from hell", health, maxHealth, attack, defense, speed, center, idx, currentImage, dead, healthBar,
+		super("Grim Reaper", "Reaper king from hell", 5000, 5000, 50, 50, 10, center, idx, currentImage, dead, healthBar,
 				element);
 		this.setCurrentImage(ImageHolder.getInstance().grims);
 		// TODO Auto-generated constructor stub

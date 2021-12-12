@@ -12,7 +12,7 @@ public class Boss1 extends Boss{
 
 	public Boss1() {
 		super();
-		//this.setCurrentImage(ImageHolder.getInstance().grims);
+		this.setCurrentImage(ImageHolder.getInstance().grims);
 		
 	}
 	public Boss1(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
