@@ -2,6 +2,7 @@ package entity;
 
 import java.util.List;
 
+import constants.ImageHolder;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ProgressBar;
@@ -11,11 +12,15 @@ public class Boss1 extends Boss{
 
 	public Boss1() {
 		super();
+		//this.setCurrentImage(ImageHolder.getInstance().grims);
+		
 	}
 	public Boss1(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
 			Point2D center, int idx, List<Image> currentImage, Image dead, ProgressBar healthBar, Elemental element) {
 		super(name, description, health, maxHealth, attack, defense, speed, center, idx, currentImage, dead, healthBar,
 				element);
+		
+		this.setCurrentImage(ImageHolder.getInstance().grims);
 		// TODO Auto-generated constructor stub
 	}
 

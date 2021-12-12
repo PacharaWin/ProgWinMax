@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-
 import constants.FontHolder;
 import constants.ImageHolder;
 import constants.SoundHolder;
@@ -13,6 +12,7 @@ import entity.Boss;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.Effect;
@@ -28,6 +28,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import main.main;
+import scene.MainMenuScene;
 import constants.ImageHolder;
 import entity.Boss1;
 import entity.Boss2;
@@ -42,12 +44,15 @@ public class PlayMenu extends BorderPane{
     //private CharacterUI characterUI;
     private static MediaPlayer mediaPlayer1;
     private static MediaPlayer mediaPlayer2;
-    private ArrayList<Boss> bossList;
+    private ArrayList<ImageView> bossImgList;
+    private ArrayList<String> bossNameList;
+    private int idx;
     public PlayMenu() {
-    	bossList = new ArrayList<Boss>();
-    	bossList.add(new Boss1());
-    	bossList.add(new Boss2());
-
+    	
+    	idx = 0;
+    	bossImgList = new ArrayList<ImageView>();
+    	bossImgList.add(getTheImage("res/EmeraldDragon.png"));
+    	bossImgList.add(getTheImage("res/grim1.png"));
     	this.setPrefSize(1050, 600);
     	/*final Media media2 = new Media(ClassLoader.getSystemResource("sound/bgm/setting.wav").toString());
     	PlayMenu.mediaPlayer2 = new MediaPlayer(media2);
@@ -81,7 +86,10 @@ public class PlayMenu extends BorderPane{
             playBtn.setEffect((Effect)boxBlur);
             exitBtn.setEffect((Effect)boxBlur);*/
         });
-        backBtn.setOnMouseClicked(e -> System.exit(0));
+        backBtn.setOnMouseClicked(e ->{
+        	MainMenuScene forBack = new MainMenuScene();
+        	main.sceneHolder.switchScene(forBack);
+        });
         this.bottomMenu.getChildren().addAll(backBtn, playBtn );
         this.bottomMenu.setAlignment(Pos.BOTTOM_CENTER);
         this.bottomMenu.setSpacing(400.0);
@@ -116,8 +124,32 @@ public class PlayMenu extends BorderPane{
         this.setLeft(prevBox);
         this.setRight(nextBox);
         nextBtn.setOnMouseClicked(e -> {
-        	
+        	idx = (idx+1)%2;
+        	change();
+        });
+        prevBtn.setOnMouseClicked(e -> {
+        	idx = (idx-1)%2;
         });
         
+        
+    }
+    public ImageView getTheImage(String name) {
+    	try(InputStream is = Files.newInputStream(Paths.get(name))){
+			ImageView img = new ImageView(new Image(is));
+			img.setFitWidth(300);
+			img.setFitHeight(300);
+			return img;
+		}
+		catch(IOException e) {
+			System.out.println("Couldn't load image");
+			return null;
+		}
+    	
+    }
+    public void change() {	 
+		ImageView image = this.bossImgList.get(idx);
+		image.setFitWidth(300);
+		image.setFitHeight(300);
+		this.setCenter(image);
     }
 }
