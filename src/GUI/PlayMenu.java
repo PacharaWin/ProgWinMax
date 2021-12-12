@@ -48,7 +48,10 @@ public class PlayMenu extends BorderPane{
     private ArrayList<String> bossNameList;
     private int idx;
     public PlayMenu() {
-    	
+    	bossNameList = new ArrayList<String>();
+    	bossNameList.add("Emerald Dragon");
+    	bossNameList.add("Grim Reaper");
+    	bossNameList.add("Undying Golem");
     	idx = 0;
     	bossImgList = new ArrayList<ImageView>();
     	bossImgList.add(getTheImage("res/EmeraldDragon.png"));
@@ -69,6 +72,10 @@ public class PlayMenu extends BorderPane{
 		catch(IOException e) {
 			System.out.println("Couldn't load image");
 		}
+    	Title title = new Title ("Emerald Dragon");
+		title.setTranslateX(0);
+		title.setTranslateY(50);
+    	this.setTop(title);
         this.bottomMenu = new HBox();
         final Button backBtn = new Button("Back");
         final Button playBtn = new Button("Let's go!!");
@@ -153,5 +160,9 @@ public class PlayMenu extends BorderPane{
 		image.setFitWidth(300);
 		image.setFitHeight(300);
 		this.setCenter(image);
+		Title title = new Title (this.bossNameList.get(idx));
+		title.setTranslateX(0);
+		title.setTranslateY(50);
+    	this.setTop(title);
     }
 }

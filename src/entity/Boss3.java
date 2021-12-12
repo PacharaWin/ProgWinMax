@@ -8,17 +8,19 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 
-public class Boss2 extends Boss{
+public class Boss3 extends Boss{
 
-	public Boss2() {
+	public Boss3() {
 		super();
-		this.setCurrentImage(ImageHolder.getInstance().grims);
+		this.setCurrentImage(ImageHolder.getInstance().golems);
+		
 	}
-	public Boss2(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
+	public Boss3(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
 			Point2D center, int idx, List<Image> currentImage, Image dead, ProgressBar healthBar, Elemental element) {
-		super("Grim Reaper", "Reaper king from hell", health, maxHealth, attack, defense, speed, center, idx, currentImage, dead, healthBar,
+		super(name, description, health, maxHealth, attack, defense, speed, center, idx, currentImage, dead, healthBar,
 				element);
-		this.setCurrentImage(ImageHolder.getInstance().grims);
+		
+		this.setCurrentImage(ImageHolder.getInstance().golems);
 		// TODO Auto-generated constructor stub
 	}
 

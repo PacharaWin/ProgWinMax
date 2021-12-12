@@ -13,7 +13,15 @@ public class ImageHolder
     private static final String PNG = "png";
     private static final ImageHolder instance;
     public List<Image> grims;
-    public Image emeraldDragon = new Image(ClassLoader.getSystemResource("EmeraldDragon.png").toString());;
+    public List<Image> golems;
+    public Image potionBlue;
+    public Image potionRed;
+    public Image potionPurple;
+    public Image gameBg1;
+    public Image gameBg2;
+    public Image gameBg3;
+    public Image gameBg4;
+    public Image emeraldDragon;
     
     static {
         instance = new ImageHolder();
@@ -24,9 +32,17 @@ public class ImageHolder
     }
     
     public ImageHolder() {
-        super();
-        //this.grims = this.loadImageList("grim", PNG, 5);
-    }
+        this.emeraldDragon = this.loadImage("EmeraldDragon", "png");
+        this.grims = this.loadImageList("grim", PNG, 5);
+        this.golems = this.loadImageList("golems", PNG, 4);
+        this.gameBg1 = this.loadImage("GameBg1", "jpg");
+        this.gameBg2 = this.loadImage("GameBg2", "jpg");
+        this.gameBg3 = this.loadImage("GameBg3", "jpg");
+        this.gameBg4 = this.loadImage("GameBg4", "jpg");
+        this.potionBlue = this.loadImage("blue1", "png");
+        this.potionRed = this.loadImage("red1", "png");
+        this.potionPurple = this.loadImage("purple1", "png");
+        }
     
     private Image loadImage(String name, String fileType) {
         String path =  name + "." + fileType;

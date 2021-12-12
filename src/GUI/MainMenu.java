@@ -33,25 +33,15 @@ public class MainMenu extends Pane{
 		title.setTranslateX(287.5);
 		title.setTranslateY(200);
 		MenuItem play = new MenuItem("Play");
-		MenuItem help = new MenuItem("Help");
-		MenuItem credit = new MenuItem("Credit");
 		MenuItem exit = new MenuItem("Exit");
 		MenuBox vbox = new MenuBox(
 				play,
-				help,
-				credit,
 				exit);
 		vbox.setTranslateX(425);
 		vbox.setTranslateY(300);
 		play.setOnMousePressed(event -> {
 			Scene forPlay = new PlayMenuScene();
 			main.sceneHolder.switchScene(forPlay);
-		});
-		help.setOnMousePressed(event -> {
-			
-		});
-		credit.setOnMousePressed(event -> {
-			
 		});
 		exit.setOnMousePressed(event -> {
 			System.exit(0);
