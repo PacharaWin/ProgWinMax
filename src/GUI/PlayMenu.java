@@ -53,6 +53,7 @@ public class PlayMenu extends BorderPane{
     	bossImgList = new ArrayList<ImageView>();
     	bossImgList.add(getTheImage("res/EmeraldDragon.png"));
     	bossImgList.add(getTheImage("res/grim1.png"));
+    	bossImgList.add(getTheImage("res/golem1.png"));
     	this.setPrefSize(1050, 600);
     	/*final Media media2 = new Media(ClassLoader.getSystemResource("sound/bgm/setting.wav").toString());
     	PlayMenu.mediaPlayer2 = new MediaPlayer(media2);
@@ -124,11 +125,12 @@ public class PlayMenu extends BorderPane{
         this.setLeft(prevBox);
         this.setRight(nextBox);
         nextBtn.setOnMouseClicked(e -> {
-        	idx = (idx+1)%2;
+        	idx = (idx+1)%3;
         	change();
         });
         prevBtn.setOnMouseClicked(e -> {
-        	idx = (idx-1)%2;
+        	idx = (idx+2)%3;
+        	change();        
         });
         
         
