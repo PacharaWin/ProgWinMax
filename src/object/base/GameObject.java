@@ -15,7 +15,7 @@ public abstract class GameObject implements IRenderable, IBehaviour {
 
 	public GameObject() {
 		this.position = new Point2D(0.0, 0.0);
-		this.sprite = ImageHolder.getInstance().nothing;
+		//this.sprite = ImageHolder.getInstance().nothing;
 		this.isDestroy = false;
 	}
 

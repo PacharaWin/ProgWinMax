@@ -12,7 +12,7 @@ public class ImageHolder
 {
     private static final String PNG = "png";
     private static final ImageHolder instance;
-    public Image nothing;
+    /*public Image nothing;
     public Image title;
     public Image characterSelect;
     public List<Image> monsterMelee;
@@ -55,7 +55,8 @@ public class ImageHolder
     public Image priestStand;
     public Image knightDead;
     public Image paladinDead;
-    public Image priestDead;
+    public Image priestDead;*/
+    public Image emeraldDragon;
     
     static {
         instance = new ImageHolder();
@@ -66,7 +67,7 @@ public class ImageHolder
     }
     
     public ImageHolder() {
-        this.nothing = this.loadImage("nothing/nothing", "png");
+        /*this.nothing = this.loadImage("nothing/nothing", "png");
         this.title = this.loadImage("overlay/title", "png");
         this.characterSelect = this.loadImage("overlay/character_selection_bg", "png");
         this.monsterMelee = this.loadImageList("monster/melee/melee_", "png", 4);
@@ -109,7 +110,8 @@ public class ImageHolder
         this.priestStand = this.loadImage("player/standstill/priest_0", "png");
         this.knightDead = this.loadImage("player/dead/knight_dead", "png");
         this.paladinDead = this.loadImage("player/dead/paladin_dead", "png");
-        this.priestDead = this.loadImage("player/dead/priest_dead", "png");
+        this.priestDead = this.loadImage("player/dead/priest_dead", "png");*/
+        this.emeraldDragon = this.loadImage("EmeraldDragon", "png");
     }
     
     public Image loadImage(final String prefixName, final String fileType) {

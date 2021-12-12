@@ -27,13 +27,8 @@ public class FontHolder
     }
     
     public FontHolder() {
-        this.font12 = this.loadFont("VCR_OSD_MONO_1.001", "ttf", 12.0);
-        this.font18 = this.loadFont("VCR_OSD_MONO_1.001", "ttf", 18.0);
-        this.font24 = this.loadFont("VCR_OSD_MONO_1.001", "ttf", 24.0);
-        this.font28 = this.loadFont("VCR_OSD_MONO_1.001", "ttf", 28.0);
-        this.font36 = this.loadFont("VCR_OSD_MONO_1.001", "ttf", 36.0);
-        this.font48 = this.loadFont("VCR_OSD_MONO_1.001", "ttf", 48.0);
-        this.font64 = this.loadFont("VCR_OSD_MONO_1.001", "ttf", 64.0);
+        //this.font12 = this.loadFont("VCR_OSD_MONO_1.001", "ttf", 12.0);
+        
     }
     
     public Font loadFont(final String name, final String fontType, final double size) {

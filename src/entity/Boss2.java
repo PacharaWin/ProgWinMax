@@ -9,6 +9,9 @@ import javafx.scene.image.Image;
 
 public class Boss2 extends Boss{
 
+	public Boss2() {
+		super();
+	}
 	public Boss2(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
 			Point2D center, int idx, List<Image> currentImage, Image dead, ProgressBar healthBar, Elemental element) {
 		super(name, description, health, maxHealth, attack, defense, speed, center, idx, currentImage, dead, healthBar,

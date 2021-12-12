@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.nio.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
+import scene.PlayMenuScene;
 import javafx.application.*;
 import javafx.stage.*;
 import javafx.geometry.*;
@@ -25,9 +25,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.*;
+import gui.MenuItem;
+import gui.MenuBox;
+
 
 public class main extends Application{
-	
+	private Stage primaryStage;
 	private Parent createContent() {
 		Pane root = new Pane();
 		
@@ -46,15 +49,31 @@ public class main extends Application{
 		Title title = new Title ("Art  of  Element");
 		title.setTranslateX(287.5);
 		title.setTranslateY(200);
-		
+		MenuItem play = new MenuItem("Play");
+		MenuItem help = new MenuItem("Help");
+		MenuItem credit = new MenuItem("Credit");
+		MenuItem exit = new MenuItem("Exit");
 		MenuBox vbox = new MenuBox(
-				new MenuItem("Play"),
-				new MenuItem("Help"),
-				new MenuItem("Credit"),
-				new MenuItem("Exit"));
+				play,
+				help,
+				credit,
+				exit);
 		vbox.setTranslateX(425);
 		vbox.setTranslateY(300);
-		Button exitBtn = new Button();
+		play.setOnMousePressed(event -> {
+			Scene forPlay = new PlayMenuScene();
+			this.primaryStage.setScene(forPlay);
+			this.primaryStage.show();
+		});
+		help.setOnMousePressed(event -> {
+			
+		});
+		credit.setOnMousePressed(event -> {
+			
+		});
+		exit.setOnMousePressed(event -> {
+			System.exit(0);
+		});
 		
 		
 		root.getChildren().addAll(title,vbox);
@@ -64,10 +83,12 @@ public class main extends Application{
 	}
 	@Override
 	public void start(Stage primaryStage) throws Exception{
+		this.primaryStage = primaryStage;
 		Scene scene = new Scene(createContent());
 		primaryStage.setTitle("ArtOfElement");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 	}
 	
 	private static class Title extends StackPane{
@@ -86,7 +107,7 @@ public class main extends Application{
 		}
 	}
 	
-	private static class MenuBox extends VBox{
+	/*private static class MenuBox extends VBox{
 		public MenuBox(MenuItem...items) {
 			getChildren().add(createSeperator());
 			
@@ -102,50 +123,10 @@ public class main extends Application{
 			return sep;
 		}
 		
-	}
+	}*/
 	
 
-	private static class MenuItem extends StackPane{
-		public MenuItem(String name) {
-			LinearGradient gradient = new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, new Stop[] { 
-				new Stop(0, Color.DARKBLUE),
-				new Stop(0.1, Color.BLACK),
-				new Stop(0.9, Color.BLACK),
-				new Stop(1, Color.DARKBLUE)
-				
-			});
-			
-			Rectangle bg = new Rectangle(200,30);
-			bg.setOpacity(0.4);
-			
-			Text text = new Text(name);
-			text.setFill(Color.DARKGREY);
-			text.setFont(Font.font("Consolas", FontWeight.SEMI_BOLD,20));
-			
-			setAlignment(Pos.CENTER);
-			getChildren().addAll(bg, text);
-			setOnMouseEntered(event -> {
-				bg.setFill(gradient);
-				text.setFill(Color.WHITE);
-				
-			});
-			
-			setOnMouseExited(event -> {
-				bg.setFill(Color.BLACK);
-				text.setFill(Color.DARKGREY);
-			});
-			setOnMousePressed(event -> {
-				bg.setFill(Color.DARKVIOLET);
-				if(name.equals("Exit")) System.exit(0);
-				//if(name.equals("Play")) 
-			});
-			
-			setOnMouseReleased(event -> {
-				bg.setFill(gradient);
-			});
-			
-			}
-		}
+	
 	
 	
 

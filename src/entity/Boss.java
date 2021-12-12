@@ -22,7 +22,10 @@ public abstract class Boss extends GameObject {
     private ProgressBar healthBar;
     protected Elemental element;
     
-    
+    public Boss() {
+    	this.name = "Boss";
+		
+    }
 	public Boss(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
 			Point2D center, int idx, List<Image> currentImage, Image dead, ProgressBar healthBar, Elemental element) {
 		super();
