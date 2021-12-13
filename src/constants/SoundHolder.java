@@ -8,7 +8,7 @@ import javafx.scene.media.AudioClip;
 
 public class SoundHolder
 {
-    private static final String WAV = "wav";
+    private static final String MP3 = "mp3";
     private static final SoundHolder instance;
     
     public AudioClip bgmMainMenu;

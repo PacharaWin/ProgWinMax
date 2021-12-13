@@ -40,8 +40,10 @@ public class main extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception{
+		
 		(this.sceneHolder = new SceneHolder(primaryStage)).initialize();
         primaryStage.setTitle("Art of Element");
+        primaryStage.setResizable(false);
         primaryStage.show();
 		
 	}

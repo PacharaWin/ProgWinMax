@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 public class ItemdropCyro extends Itemdrop{
 
 	public ItemdropCyro(Point2D position, boolean isStatic, boolean isDestroy, boolean isVisible, Image sprite, int z, Elemental element) {
-		super(position, isStatic, isDestroy, isVisible, sprite, z, element.CYRO);
+		super(position, isStatic, isDestroy, isVisible, sprite, z, element.SNOW);
 		this.sprite = ImageHolder.getInstance().potionPurple;
 		// TODO Auto-generated constructor stub
 	}

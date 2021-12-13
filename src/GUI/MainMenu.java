@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import scene.PlayMenuScene;
 
@@ -20,7 +21,8 @@ public class MainMenu extends Pane{
 	private static Stage primaryStage;
 	public MainMenu() {
 		
-		SoundHolder.getInstance().bgmMainMenu.play();
+		SoundHolder.getInstance().bgmMainMenu.play(0.4);
+		SoundHolder.getInstance().bgmMainMenu.setCycleCount(MediaPlayer.INDEFINITE);;
 		this.setPrefSize(1050, 600);
 		
 		try(InputStream is = Files.newInputStream(Paths.get("res/HillsMenu.png"))){

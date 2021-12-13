@@ -12,6 +12,10 @@ public class ImageHolder
 {
     private static final String PNG = "png";
     private static final ImageHolder instance;
+    public Image bulletFire;
+    public Image bulletWater;
+    public Image bulletDefault;
+    public Image bulletSnow;
     public List<Image> grims;
     public List<Image> golems;
     public List<Image> players;
@@ -48,6 +52,11 @@ public class ImageHolder
         this.potionRed = this.loadImage("red1", "png");
         this.potionPurple = this.loadImage("purple1", "png");
         this.potionGreen = this.loadImage("green1", "png");
+        this.bulletDefault = this.loadImage("bulletDefault", "png");
+        this.bulletFire = this.loadImage("bulletFire", "png");
+        this.bulletSnow = this.loadImage("bulletSnow", "png");
+        this.bulletWater = this.loadImage("bulletWater", "png");
+        
         }
     
     private Image loadImage(String name, String fileType) {
