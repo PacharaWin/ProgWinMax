@@ -7,6 +7,7 @@ package constants;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.image.Image;
+import logic.ImageLogic;
 
 public class ImageHolder
 {
@@ -41,12 +42,13 @@ public class ImageHolder
     public ImageHolder() {
         this.emeraldDragon = this.loadImage("EmeraldDragon", "png");
         this.grims = this.loadImageList("grim", PNG, 5);
-        this.golems = this.loadImageList("golems", PNG, 4);
+        this.golems = this.loadImageList("golem", PNG, 4);
         this.wizards = this.loadImageList("rogue", PNG, 8);
         this.players = this.loadImageList("player", PNG, 5);
         this.gameBg1 = this.loadImage("GameBg1", "jpg");
-        this.gameBg2 = this.loadImage("GameBg2", "jpg");
-        this.gameBg3 = this.loadImage("GameBg3", "jpg");
+        this.gameBg2 = ImageLogic.resizeImage(loadImage("GameBg2", "jpg"), 1050.0, 600.0);
+        this.gameBg3 = ImageLogic.resizeImage(loadImage("GameBg3", "jpg"), 1050.0, 600.0);
+       
         this.gameBg4 = this.loadImage("GameBg4", "jpg");
         this.potionBlue = this.loadImage("blue1", "png");
         this.potionRed = this.loadImage("red1", "png");

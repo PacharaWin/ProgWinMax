@@ -1,5 +1,6 @@
 package entity;
 
+import constants.PriorityConstant;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import object.base.GameObject;
@@ -23,6 +24,7 @@ public abstract class Itemdrop extends GameObject{
 		this.sprite = sprite;
 		this.z = z;
 		this.element = element;
+		this.z = PriorityConstant.getInstance().potion;
 	}
 	public Point2D getPosition() {
 		return position;

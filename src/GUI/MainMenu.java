@@ -21,7 +21,7 @@ public class MainMenu extends Pane{
 	private static Stage primaryStage;
 	public MainMenu() {
 		
-		SoundHolder.getInstance().bgmMainMenu.play(0.4);
+		SoundHolder.getInstance().bgmMainMenu.play(0.3);
 		SoundHolder.getInstance().bgmMainMenu.setCycleCount(MediaPlayer.INDEFINITE);;
 		this.setPrefSize(1050, 600);
 		

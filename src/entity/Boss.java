@@ -2,7 +2,9 @@ package entity;
 
 import java.util.List;
 
+import constants.PriorityConstant;
 import javafx.geometry.Point2D;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import object.base.GameObject;
@@ -21,8 +23,16 @@ public abstract class Boss extends GameObject {
     protected Image dead;
     private ProgressBar healthBar;
     protected Elemental element;
+    protected boolean isLeft;
+    protected double interval;
     
-    public Boss() {
+    public boolean isLeft() {
+		return isLeft;
+	}
+	public void setLeft(boolean isLeft) {
+		this.isLeft = isLeft;
+	}
+	public Boss() {
     	this.name = "Boss";
 		
     }
@@ -42,7 +52,42 @@ public abstract class Boss extends GameObject {
 		this.dead = dead;
 		this.healthBar = healthBar;
 		this.element = element;
+		this.z = PriorityConstant.getInstance().boss;
+		
 	}
+	
+	public double getInterval() {
+		return interval;
+	}
+	public void setInterval(double interval) {
+		this.interval = interval;
+	}
+	public void draw(final GraphicsContext gc) {
+        final double x = this.getPosition().getX();
+        final double y = this.getPosition().getY();
+        Image image = this.getSprite();
+        if (this.getHealth() > 0) {
+            image = this.getCurrentImage().get(this.getIdx());
+        }
+        else {
+            image = this.getDead();
+        }
+        //final double imgX = image.getWidth() * SystemCache.getInstance().gameCanvas.getFactor();
+        //final double imgY = image.getHeight() * SystemCache.getInstance().gameCanvas.getFactor();
+//        if (this.isLeft) {
+//            gc.drawImage(image, x + this.getWidth(), y, -1.0 * imgX, imgY);
+//        }
+//        else {
+//            gc.drawImage(image, x, y, imgX, imgY);
+//        }
+        if (this.getInterval() < 0.0) {
+            this.setIdx((this.getIdx() + 1) % 4);
+            this.setInterval(0.3);
+        }
+        else {
+            this.setInterval(this.getInterval() - 0.03);
+        }
+    }
 	public String getName() {
 		return name;
 	}
@@ -121,6 +166,6 @@ public abstract class Boss extends GameObject {
 	public void setElement(Elemental element) {
 		this.element = element;
 	}
-    
+	
     
 }

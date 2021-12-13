@@ -1,5 +1,6 @@
 package entity;
 
+import constants.PriorityConstant;
 import javafx.geometry.Point2D;
 import object.base.GameObject;
 
@@ -20,6 +21,7 @@ public abstract class Bullet extends GameObject{
 		this.radius = radius;
 		this.direction = direction;
 		this.element = element;
+		this.z = PriorityConstant.getInstance().bullet;
 	}
 	public double getSpeed() {
 		return speed;
