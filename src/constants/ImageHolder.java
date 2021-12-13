@@ -14,6 +14,7 @@ public class ImageHolder
     private static final ImageHolder instance;
     public List<Image> grims;
     public List<Image> golems;
+    public List<Image> players;
     public Image potionBlue;
     public Image potionRed;
     public Image potionPurple;
@@ -23,6 +24,7 @@ public class ImageHolder
     public Image gameBg3;
     public Image gameBg4;
     public Image emeraldDragon;
+    public List<Image> wizards;
     
     static {
         instance = new ImageHolder();
@@ -36,6 +38,8 @@ public class ImageHolder
         this.emeraldDragon = this.loadImage("EmeraldDragon", "png");
         this.grims = this.loadImageList("grim", PNG, 5);
         this.golems = this.loadImageList("golems", PNG, 4);
+        this.wizards = this.loadImageList("rogue", PNG, 8);
+        this.players = this.loadImageList("player", PNG, 5);
         this.gameBg1 = this.loadImage("GameBg1", "jpg");
         this.gameBg2 = this.loadImage("GameBg2", "jpg");
         this.gameBg3 = this.loadImage("GameBg3", "jpg");

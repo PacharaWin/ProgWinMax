@@ -12,15 +12,15 @@ public class Boss1 extends Boss{
 
 	public Boss1() {
 		super();
-		this.setCurrentImage(ImageHolder.getInstance().grims);
+		this.setCurrentImage(ImageHolder.getInstance().wizards);
 		
 	}
-	public Boss1(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
+	public Boss1( String description, int health, int maxHealth, int attack, double defense, int speed,
 			Point2D center, int idx, List<Image> currentImage, Image dead, ProgressBar healthBar, Elemental element) {
-		super(name, description, health, maxHealth, attack, defense, speed, center, idx, currentImage, dead, healthBar,
+		super("Chaos Wizard", description, health, maxHealth, attack, defense, speed, center, idx, currentImage, dead, healthBar,
 				element);
 		
-		this.setCurrentImage(ImageHolder.getInstance().grims);
+		this.setCurrentImage(ImageHolder.getInstance().wizards);
 		// TODO Auto-generated constructor stub
 	}
 

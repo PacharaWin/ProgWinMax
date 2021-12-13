@@ -49,12 +49,12 @@ public class PlayMenu extends BorderPane{
     private int idx;
     public PlayMenu() {
     	bossNameList = new ArrayList<String>();
-    	bossNameList.add("Emerald Dragon");
+    	bossNameList.add("Chaos Wizard");
     	bossNameList.add("Grim Reaper");
     	bossNameList.add("Undying Golem");
     	idx = 0;
     	bossImgList = new ArrayList<ImageView>();
-    	bossImgList.add(getTheImage("res/EmeraldDragon.png"));
+    	bossImgList.add(getTheImage("res/rogue1.png"));
     	bossImgList.add(getTheImage("res/grim1.png"));
     	bossImgList.add(getTheImage("res/golem1.png"));
     	this.setPrefSize(1050, 600);
@@ -72,7 +72,7 @@ public class PlayMenu extends BorderPane{
 		catch(IOException e) {
 			System.out.println("Couldn't load image");
 		}
-    	Title title = new Title ("Emerald Dragon");
+    	Title title = new Title ("Chaos Wizard");
 		title.setTranslateX(0);
 		title.setTranslateY(50);
     	this.setTop(title);
@@ -106,10 +106,10 @@ public class PlayMenu extends BorderPane{
         
         InputStream is;
 		try {
-			is = Files.newInputStream(Paths.get("res/EmeraldDragon.png"));
+			is = Files.newInputStream(Paths.get("res/rogue1.png"));
 			ImageView image = new ImageView(new Image(is));
-			image.setFitWidth(300);
-			image.setFitHeight(300);
+			image.setFitWidth(200);
+			image.setFitHeight(200);
 			this.setCenter(image);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -159,6 +159,10 @@ public class PlayMenu extends BorderPane{
 		ImageView image = this.bossImgList.get(idx);
 		image.setFitWidth(300);
 		image.setFitHeight(300);
+		if(idx == 0) {
+			image.setFitWidth(200);
+			image.setFitHeight(200);
+		}
 		this.setCenter(image);
 		Title title = new Title (this.bossNameList.get(idx));
 		title.setTranslateX(0);

@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import constants.SoundHolder;
 import main.main;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import scene.PlayMenuScene;
 
@@ -17,6 +20,7 @@ public class MainMenu extends Pane{
 	private static Stage primaryStage;
 	public MainMenu() {
 		
+		SoundHolder.getInstance().bgmMainMenu.play();
 		this.setPrefSize(1050, 600);
 		
 		try(InputStream is = Files.newInputStream(Paths.get("res/HillsMenu.png"))){
