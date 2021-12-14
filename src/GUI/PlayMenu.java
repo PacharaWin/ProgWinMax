@@ -34,7 +34,7 @@ import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import main.main;
+import main.Main;
 import scene.MainMenuScene;
 import constants.ImageHolder;
 import entity.Boss1;
@@ -102,7 +102,7 @@ public class PlayMenu extends BorderPane{
         });
         backBtn.setOnMouseClicked(e ->{
         	MainMenuScene forBack = new MainMenuScene();
-        	main.sceneHolder.switchScene(forBack);
+        	Main.sceneHolder.switchScene(forBack);
         });
         this.bottomMenu.getChildren().addAll(backBtn, playBtn );
         this.bottomMenu.setAlignment(Pos.BOTTOM_CENTER);

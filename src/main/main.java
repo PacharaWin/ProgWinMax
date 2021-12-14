@@ -34,7 +34,7 @@ import gui.Title;
 import gui.MainMenu;
 
 
-public class main extends Application{
+public class Main extends Application{
 	
 	 public static SceneHolder sceneHolder;
 

@@ -49,7 +49,7 @@ public class GameCanvas extends Canvas{
         }).start();
     }
     public void drawGameObject() {
-    	gc.drawImage(ImageHolder.getInstance().gameBg2, 0, 0);
+    	gc.drawImage(ImageHolder.getInstance().gameBg3, 0, 0);
     	 for ( IRenderable go : RenderableHolder.getInstance().getEntities()) {
     		 go.draw(this.gc);
              

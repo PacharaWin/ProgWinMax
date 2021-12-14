@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import constants.SoundHolder;
-import main.main;
+import main.Main;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -20,9 +20,10 @@ import scene.PlayMenuScene;
 public class MainMenu extends Pane{
 	private static Stage primaryStage;
 	public MainMenu() {
-		
-		SoundHolder.getInstance().bgmMainMenu.play(0.3);
-		SoundHolder.getInstance().bgmMainMenu.setCycleCount(MediaPlayer.INDEFINITE);;
+		if(!SoundHolder.getInstance().bgmMainMenu.isPlaying()) {
+			SoundHolder.getInstance().bgmMainMenu.play(0.3);
+			SoundHolder.getInstance().bgmMainMenu.setCycleCount(MediaPlayer.INDEFINITE);
+		}
 		this.setPrefSize(1050, 600);
 		
 		try(InputStream is = Files.newInputStream(Paths.get("res/HillsMenu.png"))){
@@ -47,7 +48,7 @@ public class MainMenu extends Pane{
 		vbox.setTranslateY(300);
 		play.setOnMousePressed(event -> {
 			Scene forPlay = new PlayMenuScene();
-			main.sceneHolder.switchScene(forPlay);
+			Main.sceneHolder.switchScene(forPlay);
 		});
 		exit.setOnMousePressed(event -> {
 			System.exit(0);
