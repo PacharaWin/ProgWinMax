@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package constants;
 
@@ -15,6 +12,10 @@ public class SoundHolder
     public AudioClip bgmFight1;
     public AudioClip bgmFight2;
     public AudioClip bgmFight3;
+    public AudioClip shootSound1;
+    public AudioClip shootSound2;
+    public AudioClip winBgm;
+    public AudioClip loseBgm;
     
     static {
         instance = new SoundHolder();
@@ -30,6 +31,10 @@ public class SoundHolder
         this.bgmFight1 = this.loadSound("bgmFight1", "mp3");
         this.bgmFight2 = this.loadSound("bgmFight2", "mp3");
         this.bgmFight3 = this.loadSound("bgmFight3", "mp3");
+        this.winBgm = this.loadSound("gameWinBgm", "mp3");
+        this.loseBgm = this.loadSound("gameLoseBgm", "mp3");
+        this.shootSound1 = this.loadSound("shootSound1", "mp3");
+        this.shootSound2 = this.loadSound("shootSound2", "mp3");
         
     }
     

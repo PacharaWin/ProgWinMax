@@ -5,6 +5,7 @@
 package scene;
 
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
 
 public class SceneHolder
@@ -26,4 +27,5 @@ public class SceneHolder
         this.bindStage.setScene(nextScene);
         this.bindStage.sizeToScene();
     }
+    
 }

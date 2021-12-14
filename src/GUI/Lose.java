@@ -1,0 +1,93 @@
+package gui;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+
+import constants.SoundHolder;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import main.Main;
+import scene.MainMenuScene;
+
+public class Lose extends BorderPane{
+	private Pane backgroundVideoPane;
+	private VBox nextBox;
+	private VBox prevBox;
+    private HBox titleBox;
+    private HBox bottomMenu;
+    private BorderPane menuBorderPane;
+    //private CharacterUI characterUI;
+    private static MediaPlayer mediaPlayer1;
+    private static MediaPlayer mediaPlayer2;
+    private ArrayList<ImageView> bossImgList;
+    private ArrayList<String> bossNameList;
+    private int idx;
+    
+    public Lose(){
+    	this.setPrefSize(1050, 600);
+    	SoundHolder.getInstance().bgmFight1.stop();
+		SoundHolder.getInstance().loseBgm.play(0.1);
+    	this.bottomMenu = new HBox();
+    	this.nextBox = new VBox();
+    	try(InputStream is = Files.newInputStream(Paths.get("res/GameBg3.jpg"))){
+			ImageView img = new ImageView(new Image(is));
+			img.setFitWidth(1050);
+			img.setFitHeight(600);
+			this.getChildren().add(img);
+		}
+		catch(IOException e) {
+			System.out.println("Couldn't load image");
+		}
+    	final Button backBtn = new Button("Back to main menu");
+    	this.bottomMenu.getChildren().add(backBtn);
+   	 	this.setBottom(bottomMenu);
+   	 	InputStream is;
+   	 	try {
+			is = Files.newInputStream(Paths.get("res/lose.png"));
+			ImageView image = new ImageView(new Image(is));
+			image.setFitWidth(600);
+			image.setFitHeight(309);
+			this.setCenter(image);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 backBtn.setFont(Font.font("Consolas", FontWeight.SEMI_BOLD, 50));
+    	 backBtn.setOnMouseClicked(e ->{
+         	MainMenuScene forBack = new MainMenuScene();
+         	Main.sceneHolder.switchScene(forBack);
+         });
+    	 this.bottomMenu.setAlignment(Pos.BOTTOM_CENTER);
+         this.bottomMenu.setSpacing(400.0);
+         this.bottomMenu.setPadding(new Insets(50.0));
+    	 
+    	 
+    }
+    
+    public ImageView getTheImage(String name) {
+    	try(InputStream is = Files.newInputStream(Paths.get(name))){
+			ImageView img = new ImageView(new Image(is));
+			img.setFitWidth(600);
+			img.setFitHeight(300);
+			return img;
+		}
+		catch(IOException e) {
+			System.out.println("Couldn't load image");
+			return null;
+		}
+    	
+    }
+}

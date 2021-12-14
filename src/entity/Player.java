@@ -1,13 +1,25 @@
 package entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import constants.GameConstant;
 import constants.ImageHolder;
 import constants.PriorityConstant;
 import gui.GameCanvas;
+import input.InputUtility;
+import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import object.base.GameObject;
 
 public class Player extends GameObject{
@@ -29,6 +41,10 @@ public class Player extends GameObject{
     private double cooldown;
     private int skillManaUse;
     protected Elemental element;
+    private static final double W = 600, H = 400;
+    private Image heroImage;
+    private Node  hero;
+    boolean running, goNorth, goSouth, goEast, goWest;
     
     public Player() {
     	this.name = "witch";
@@ -41,6 +57,13 @@ public class Player extends GameObject{
     	this.isLeft = false;
     	this.isMoving = false;
     	this.sprite = ImageHolder.getInstance().players.get(0);
+    	heroImage = ImageHolder.getInstance().players.get(0);
+	    hero = new ImageView(heroImage);
+	    
+    }
+    public Player(Point2D pos) { 
+    	this();
+    	this.setPosition(pos);
     }
 	public Player(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
 			Point2D center, int idx, List<Image> currentImage, Image dead, boolean isLeft, boolean isMoving,
@@ -65,17 +88,21 @@ public class Player extends GameObject{
 		this.skillManaUse = skillManaUse;
 		this.z = PriorityConstant.getInstance().player;
 		this.sprite = ImageHolder.getInstance().players.get(0);
+		heroImage = ImageHolder.getInstance().players.get(0);
+	    hero = new ImageView(heroImage);
 	}
 	@Override
 	public void draw(final GraphicsContext gc) {
 		final double x = this.getPosition().getX();
         final double y = this.getPosition().getY();
         
-        if (!this.isMoving() || this.getHealth() == 0) {
-            final double imgX = sprite.getWidth();
+        
+        final double imgX = sprite.getWidth();
             final double imgY = sprite.getHeight();
             gc.drawImage(this.getSprite(), x, y, imgX, imgY);
-        }
+            System.out.println(x);
+        
+        
     }
 	@Override
 	public boolean isVisible() {
@@ -84,66 +111,63 @@ public class Player extends GameObject{
 	}
 	@Override
 	public void update() {
-		//final GameEvent ge = SystemCache.getInstance().gameEvent;
-//        final int hdir = ge.getHorizontal();
-//        final int vdir = ge.getVertical();
-        double dx = 0.0;
-        double dy = 0.0;
-        //final GameCanvas gameCanvas = SystemCache.getInstance().gameCanvas;
-        final double minY;
-        final double minX;
-//        final double cellSize = minX = (minY = 16.0 * SystemCache.getInstance().gameCanvas.getFactor());
-//        final double maxY = 768.0 - cellSize;
-//        final double maxX = 1024.0 - cellSize;
-        final Image image = this.getCurrentImage().get(this.getIdx());
-//        final double imgX = image.getWidth() * SystemCache.getInstance().gameCanvas.getFactor();
-//        if (this.getPosition().getX() + imgX + this.speed * 0.03 < maxX && this.getPosition().getX() - this.speed * 0.03 > minX) {
-//            if (hdir > 0) {
-//                this.goRight();
-//                dx = this.speed * 0.03;
-//            }
-//            else if (hdir < 0) {
-//                this.goLeft();
-//                dx = -(this.speed * 0.03);
-//            }
-//        }
-//        if (this.getPosition().getX() + imgX + this.speed * 0.03 > maxX && hdir < 0) {
-//            this.goLeft();
-//            dx = -(this.speed * 0.03);
-//        }
-//        if (this.getPosition().getX() - this.speed * 0.03 < minX && hdir > 0) {
-//            this.goRight();
-//            dx = this.speed * 0.03;
-//        }
-//        if (this.getCenter().getY() + this.speed * 0.03 < maxY && this.getCenter().getY() - this.speed * 0.03 > minY) {
-//            if (vdir > 0) {
-//                dy = this.speed * 0.03;
-//            }
-//            else if (vdir < 0) {
-//                dy = -(this.speed * 0.03);
-//            }
-//        }
-//        if (this.getCenter().getY() + this.speed * 0.03 > maxY && vdir < 0) {
-//            dy = -(this.speed * 0.03);
-//        }
-//        if (this.getCenter().getY() - this.speed * 0.03 < minY && vdir > 0) {
-//            dy = this.speed * 0.03;
-//        }
-//        final List<GameObject> list = SystemCache.getInstance().gameCanvas.getGameObjects();
-//        for (final GameObject go : list) {
-//            if (go instanceof ICollectable && Utility.isCollide(this, go)) {
-//                ((ICollectable)go).pick(this);
-//            }
-//        }
-        this.setPosition(new Point2D(this.getPosition().getX() + dx, this.getPosition().getY() + dy));
-//        if (vdir == 0 && hdir == 0) {
-//            this.setMoving(false);
-//        }
-//        else {
-//            this.setMoving(true);
-//        }
+		ArrayList<KeyCode> keyPressed = GameConstant.keyPressed;
+		/*if (InputUtility.getKeyPressed(KeyCode.W)) {
+			this.setCenter(center.subtract(0, -1));
+		}
+		if (InputUtility.getKeyPressed(KeyCode.A)) {
+			this.setCenter(center.subtract(1, 0));
+		} else if (InputUtility.getKeyPressed(KeyCode.D)) {
+			this.setCenter(center.subtract(-1, 0));
+		}
+		if (InputUtility.getKeyPressed(KeyCode.S)) {
+			this.setCenter(center.subtract(0, 1));
+		}
+		if (InputUtility.isLeftClickTriggered()) {
+			//this.x = InputUtility.mouseX;
+			//this.y = InputUtility.mouseY;
+		}*/
+		System.out.println("Test");
+		if (keyPressed.contains(KeyCode.A) && this.getPosition().getX()>-20) {
+			this.setPosition(new Point2D(this.getPosition().getX()-4, this.getPosition().getY()));
+        }
+        if (keyPressed.contains(KeyCode.S) && this.getPosition().getY()<520) {
+        	this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()+4));
+        }
+        if (keyPressed.contains(KeyCode.W) && this.getPosition().getY()>300) {
+        	this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()-4));
+        }
+        if (keyPressed.contains(KeyCode.D)&& this.getPosition().getX()<980) {
+        	this.setPosition(new Point2D(this.getPosition().getX()+4, this.getPosition().getY()));
+        }
+        
+	}
+	private void shoot() {
 		
 	}
+	private void moveHeroBy(int dx, int dy) {
+        if (dx == 0 && dy == 0) return;
+
+        final double cx = hero.getBoundsInLocal().getWidth()  / 2;
+        final double cy = hero.getBoundsInLocal().getHeight() / 2;
+
+        double x = cx + hero.getLayoutX() + dx;
+        double y = cy + hero.getLayoutY() + dy;
+
+        moveHeroTo(x, y);
+    }
+
+    private void moveHeroTo(double x, double y) {
+        final double cx = hero.getBoundsInLocal().getWidth()  / 2;
+        final double cy = hero.getBoundsInLocal().getHeight() / 2;
+
+        if (x - cx >= 0 &&
+            x + cx <= W &&
+            y - cy >= 0 &&
+            y + cy <= H) {
+            hero.relocate(x - cx, y - cy);
+        }
+    }
 	@Override
 	public void positionValueCorrection() {
 		// TODO Auto-generated method stub

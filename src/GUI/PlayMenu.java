@@ -35,7 +35,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.Main;
+import scene.GameCanvasScene;
 import scene.MainMenuScene;
+import scene.PlayMenuScene;
 import constants.ImageHolder;
 import entity.Boss1;
 import entity.Boss2;
@@ -88,17 +90,10 @@ public class PlayMenu extends BorderPane{
         playBtn.setFont(Font.font("Consolas", FontWeight.SEMI_BOLD, 50));
         backBtn.setFont(Font.font("Consolas", FontWeight.SEMI_BOLD, 50));
         playBtn.setOnMouseClicked(e -> {
-            /*GameStats.reset();
-            SoundHolder.getInstance().btn.play();
-            this.characterUI.show();
-            final BoxBlur boxBlur = new BoxBlur();
-            boxBlur.setHeight(10.0);
-            boxBlur.setWidth(10.0);
-            boxBlur.setIterations(3);
-            mediaView1.setEffect((Effect)boxBlur);
-            title.setEffect((Effect)boxBlur);
-            playBtn.setEffect((Effect)boxBlur);
-            exitBtn.setEffect((Effect)boxBlur);*/
+        	GameCanvasScene forPlay = new GameCanvasScene();
+			Main.sceneHolder.switchScene(forPlay);
+			SoundHolder.getInstance().bgmMainMenu.stop();
+			SoundHolder.getInstance().bgmFight1.play(0.2);
         });
         backBtn.setOnMouseClicked(e ->{
         	MainMenuScene forBack = new MainMenuScene();

@@ -17,6 +17,8 @@ public class ImageHolder
     public Image bulletWater;
     public Image bulletDefault;
     public Image bulletSnow;
+    public Image win;
+    public Image lose;
     public List<Image> grims;
     public List<Image> golems;
     public List<Image> players;
@@ -40,6 +42,8 @@ public class ImageHolder
     }
     
     public ImageHolder() {
+    	this.win = this.loadImage("win", PNG);
+    	this.lose = this.loadImage("lose", PNG);
         this.emeraldDragon = this.loadImage("EmeraldDragon", "png");
         this.grims = this.loadImageList("grim", PNG, 5);
         this.golems = this.loadImageList("golem", PNG, 4);
@@ -69,7 +73,25 @@ public class ImageHolder
     public List<Image> loadImageList(final String prefixName, final String fileType, final int number) {
         final List<Image> list = new ArrayList<Image>();
         for (int i = 1; i <= number; ++i) {
-            list.add(this.loadImage(String.valueOf(prefixName) + i, fileType));
+            if(prefixName.equals("player")) {
+            	Image tmp = this.loadImage(String.valueOf(prefixName) + i, fileType);
+            	tmp = ImageLogic.resizeImage(loadImage("player"+i,  "png"), 80.0, 80.0);
+            	list.add(tmp);
+            }if(prefixName.equals("rogue")) {
+            	Image tmp = this.loadImage(String.valueOf(prefixName) + i, fileType);
+            	tmp = ImageLogic.resizeImage(loadImage("rogue"+i,  "png"), 180.0, 180.0);
+            	list.add(tmp);
+            }if(prefixName.equals("golem")) {
+            	Image tmp = this.loadImage(String.valueOf(prefixName) + i, fileType);
+            	tmp = ImageLogic.resizeImage(loadImage("golem"+i,  "png"), 220.0, 220.0);
+            	list.add(tmp);
+            }if(prefixName.equals("grim")) {
+            	Image tmp = this.loadImage(String.valueOf(prefixName) + i, fileType);
+            	tmp = ImageLogic.resizeImage(loadImage("grim"+i,  "png"), 220.0, 220.0);
+            	list.add(tmp);
+            }else {
+            	list.add(this.loadImage(String.valueOf(prefixName) + i, fileType));
+            }
         }
         return list;
     }
