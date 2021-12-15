@@ -1,11 +1,9 @@
 package scene;
 
 import gui.MainMenu;
-import gui.PlayMenu;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 public class MainMenuScene extends Scene
 {

@@ -7,14 +7,13 @@ import java.nio.file.Paths;
 
 import constants.SoundHolder;
 import main.Main;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import scene.HowToPlayScene;
 import scene.PlayMenuScene;
 
 public class MainMenu extends Pane{
@@ -40,12 +39,18 @@ public class MainMenu extends Pane{
 		title.setTranslateX(287.5);
 		title.setTranslateY(200);
 		MenuItem play = new MenuItem("Play");
+		MenuItem howToPlay = new MenuItem("How to Play");
 		MenuItem exit = new MenuItem("Exit");
 		MenuBox vbox = new MenuBox(
 				play,
+				howToPlay,
 				exit);
 		vbox.setTranslateX(425);
 		vbox.setTranslateY(300);
+		howToPlay.setOnMousePressed(event -> {
+			Scene forPlay = new HowToPlayScene();
+			Main.sceneHolder.switchScene(forPlay);
+		});
 		play.setOnMousePressed(event -> {
 			Scene forPlay = new PlayMenuScene();
 			Main.sceneHolder.switchScene(forPlay);

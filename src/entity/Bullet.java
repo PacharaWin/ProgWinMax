@@ -12,13 +12,20 @@ public abstract class Bullet extends GameObject{
     protected int damage;
     protected double radius;
     protected Point2D direction;
-    protected Elemental element;
     protected List<Image> currentImage;
+    public Elemental getElement() {
+		return element;
+	}
+	public void setElement(Elemental element) {
+		this.element = element;
+	}
+	protected Elemental element;
     
     
 	public Bullet() {
 		super();
 		this.radius = 5;
+		this.damage = 5;
 	}
 	public Bullet(double speed, int damage, double radius, Point2D direction, Elemental element) {
 		super();
@@ -69,6 +76,7 @@ public abstract class Bullet extends GameObject{
         double dx = (dy/y)*x;
         this.direction = new Point2D(dx, dy);
     }
+
     
     
 }

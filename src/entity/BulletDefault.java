@@ -1,7 +1,6 @@
 package entity;
 
 import constants.ImageHolder;
-import constants.SoundHolder;
 import gui.GameCanvas;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -9,14 +8,29 @@ import object.base.GameObject;
 
 public class BulletDefault extends Bullet {
 
+	
 	private static int cnt = 0;
 	public BulletDefault() {
 		this.currentImage = ImageHolder.getInstance().bullet;
 		this.sprite = ImageHolder.getInstance().bullet.get(cnt%4);
-		cnt++;
+		this.element = Elemental.DEFAULT;
 	}
-	public BulletDefault(Point2D pos) {
+	public BulletDefault(Point2D pos, Elemental e) {
 		this();
+		this.currentImage = ImageHolder.getInstance().bullet;
+		if(e.equals(Elemental.FIRE)) {
+			this.sprite = ImageHolder.getInstance().bullet.get(1);
+			this.element = Elemental.FIRE;
+		}else if(e.equals(Elemental.SNOW)) {
+			this.sprite = ImageHolder.getInstance().bullet.get(2);
+			this.element = Elemental.SNOW;
+		} else if(e.equals(Elemental.WATER)) {
+			this.sprite = ImageHolder.getInstance().bullet.get(3);
+			this.element = Elemental.WATER;
+		} else if(e.equals(Elemental.DEFAULT)) {
+			this.sprite = ImageHolder.getInstance().bullet.get(0);
+			this.element = Elemental.DEFAULT;
+		}
 		this.position = pos;
 		this.damage = 100;
 	}
@@ -50,9 +64,8 @@ public class BulletDefault extends Bullet {
 		for(GameObject obj: GameCanvas.gameObjects) {
 			//System.out.println(obj.getClass());
 			if(collideWith(obj) && obj instanceof Boss ) {
-				//Boss hp decrease
 				//System.out.println("hit");
-				((Boss) obj).setHealth(((Boss) obj).getHealth() - this.damage);
+				logic.CalDamage.calculateDamage(this, (Boss) obj);
 				GameCanvas.toBeErase(this);
 			}
 		}

@@ -52,10 +52,10 @@ public class ImageHolder
         this.gameBg2 = ImageLogic.resizeImage(loadImage("GameBg2", "jpg"), 1050.0, 600.0);
         this.gameBg3 = ImageLogic.resizeImage(loadImage("GameBg3", "jpg"), 1050.0, 600.0);
         this.gameBg4 = this.loadImage("GameBg4", "jpg");
-        this.potionBlue = this.loadImage("blue1", "png");
-        this.potionRed = this.loadImage("red1", "png");
-        this.potionPurple = this.loadImage("purple1", "png");
-        this.potionGreen = this.loadImage("green1", "png");
+        this.potionBlue = ImageLogic.resizeImage(loadImage("blue1", "png"), 30.0, 30.0);
+        this.potionRed = ImageLogic.resizeImage(loadImage("red1", "png"), 30.0, 30.0);
+        this.potionPurple = ImageLogic.resizeImage(loadImage("purple1", "png"), 30.0, 30.0);
+        this.potionGreen = ImageLogic.resizeImage(loadImage("green1", "png"), 30.0, 30.0);
         this.bullet = this.loadImageList("bullet", PNG, 4);
         
         

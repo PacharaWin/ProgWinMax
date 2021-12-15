@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import scene.SceneHolder;
 import constants.SoundHolder;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,23 +19,11 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.Main;
-import scene.GameCanvasScene;
 import scene.MainMenuScene;
 
 public class Win extends BorderPane{
-    private Pane backgroundVideoPane;
-	private VBox nextBox;
-	private VBox prevBox;
-    private HBox titleBox;
-    private HBox bottomMenu;
-    private BorderPane menuBorderPane;
-    //private CharacterUI characterUI;
-    private static MediaPlayer mediaPlayer1;
-    private static MediaPlayer mediaPlayer2;
-    private ArrayList<ImageView> bossImgList;
-    private ArrayList<String> bossNameList;
-    private int idx;
-    
+    private VBox nextBox;
+	private HBox bottomMenu;
     public Win(){
     	this.setPrefSize(1050, 600);
     	

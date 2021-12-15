@@ -1,8 +1,6 @@
 package scene;
 
 import gui.GameCanvas;
-import gui.MainMenu;
-import gui.PlayMenu;
 import constants.GameConstant;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -10,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 public class GameCanvasScene extends Scene
 {

@@ -6,29 +6,21 @@ import java.util.List;
 import constants.GameConstant;
 import constants.ImageHolder;
 import constants.PriorityConstant;
-import constants.RenderableHolder;
 import constants.SoundHolder;
 import gui.GameCanvas;
-import input.InputUtility;
-import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import object.base.GameObject;
 
 public class Player extends GameObject{
 	protected String name;
     protected String description;
-    protected int health;
-    protected int maxHealth;
+    protected double health;
+    protected double maxHealth;
     protected int attack;
     protected double defense;
     protected int speed;
@@ -49,23 +41,33 @@ public class Player extends GameObject{
     
     public Player() {
     	this.name = "witch";
-    	this.health = 1000;
-    	this.maxHealth = 1000;
+    	this.health = 100;
+    	this.maxHealth = 100;
     	this.attack = 50;
     	this.defense = 10;
     	this.speed = 10;
     	this.isLeft = false;
     	this.isMoving = false;
-    	this.sprite = ImageHolder.getInstance().players.get(0);
+    	this.sprite = ImageHolder.getInstance().players.get(0 );
     	heroImage = ImageHolder.getInstance().players.get(0);
 	    hero = new ImageView(heroImage);
+	    this.element = Elemental.DEFAULT;
 	    
     }
     
-    public Player(Point2D pos) { 
+    public Elemental getElement() {
+		return element;
+	}
+
+	public void setElement(Elemental element) {
+		this.element = element;
+	}
+
+	public Player(Point2D pos) { 
     	this();
     	this.setPosition(pos);
     	this.radius = 40;
+    	this.speed = 5;
     }
     
 	public Player(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
@@ -115,16 +117,16 @@ public class Player extends GameObject{
 		ArrayList<KeyCode> keyPressed = GameConstant.keyPressed;
 		//System.out.println("Test");
 		if (keyPressed.contains(KeyCode.A) && this.getPosition().getX()>-20) {
-			this.setPosition(new Point2D(this.getPosition().getX()-4, this.getPosition().getY()));
+			this.setPosition(new Point2D(this.getPosition().getX()-this.speed, this.getPosition().getY()));
         }
         if (keyPressed.contains(KeyCode.S) && this.getPosition().getY()<520) {
-        	this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()+4));
+        	this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()+this.speed));
         }
         if (keyPressed.contains(KeyCode.W) && this.getPosition().getY()>300) {
-        	this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()-4));
+        	this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()-this.speed));
         }
         if (keyPressed.contains(KeyCode.D)&& this.getPosition().getX()<980) {
-        	this.setPosition(new Point2D(this.getPosition().getX()+4, this.getPosition().getY()));
+        	this.setPosition(new Point2D(this.getPosition().getX()+this.speed, this.getPosition().getY()));
         }
         if(keyPressed.contains(KeyCode.SPACE)) {
 			shoot();
@@ -136,41 +138,37 @@ public class Player extends GameObject{
 	private void shoot() {
 		cnt--;
 		if(cnt > 0) return;
-		BulletDefault bul = new BulletDefault(this.getPosition());
-		SoundHolder.getInstance().shootSound1.stop();
-		SoundHolder.getInstance().shootSound1.play(0.7);
-		/*new Thread(
-			
-			
-		, "t").start();*/
-		GameCanvas.toBeAdd(bul);
-		cnt=28;
-		//System.out.println(cnt);
+		if(this.element.equals(Elemental.DEFAULT)) {
+			BulletDefault bul = new BulletDefault(this.getPosition(), Elemental.DEFAULT);
+			SoundHolder.getInstance().shootSound1.stop();
+			SoundHolder.getInstance().shootSound1.play(0.7);
+			GameCanvas.toBeAdd(bul);
+			cnt=28;
+			System.out.println("de");
+		} else if(this.element.equals(Elemental.FIRE)) {
+			BulletDefault bul = new BulletDefault(this.getPosition(), Elemental.FIRE);
+			SoundHolder.getInstance().shootSound1.stop();
+			SoundHolder.getInstance().shootSound1.play(0.7);
+			GameCanvas.toBeAdd(bul);
+			System.out.println("fi");
+			cnt=28;
+		} else if(this.element.equals(Elemental.WATER)) {
+			BulletDefault bul = new BulletDefault(this.getPosition(), Elemental.WATER);
+			SoundHolder.getInstance().shootSound1.stop();
+			SoundHolder.getInstance().shootSound1.play(0.7);
+			GameCanvas.toBeAdd(bul);
+			System.out.println("wa");
+			cnt=28;
+		} else if(this.element.equals(Elemental.SNOW)) {
+			BulletDefault bul = new BulletDefault(this.getPosition(), Elemental.SNOW);
+			SoundHolder.getInstance().shootSound1.stop();
+			SoundHolder.getInstance().shootSound1.play(0.7);
+			GameCanvas.toBeAdd(bul);
+			System.out.println("sno");
+			cnt=28;
+		}
 		
 	}
-	private void moveHeroBy(int dx, int dy) {
-        if (dx == 0 && dy == 0) return;
-
-        final double cx = hero.getBoundsInLocal().getWidth()  / 2;
-        final double cy = hero.getBoundsInLocal().getHeight() / 2;
-
-        double x = cx + hero.getLayoutX() + dx;
-        double y = cy + hero.getLayoutY() + dy;
-
-        moveHeroTo(x, y);
-    }
-
-    private void moveHeroTo(double x, double y) {
-        final double cx = hero.getBoundsInLocal().getWidth()  / 2;
-        final double cy = hero.getBoundsInLocal().getHeight() / 2;
-
-        if (x - cx >= 0 &&
-            x + cx <= W &&
-            y - cy >= 0 &&
-            y + cy <= H) {
-            hero.relocate(x - cx, y - cy);
-        }
-    }
 	@Override
 	public void positionValueCorrection() {
 		// TODO Auto-generated method stub
@@ -188,13 +186,18 @@ public class Player extends GameObject{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getHealth() {
+	public double getHealth() {
 		return health;
 	}
-	public void setHealth(int health) {
-		this.health = health;
+	public void setHealth(double d) {
+		if(d >= this.maxHealth) {
+			this.health = maxHealth;
+		} else {
+			this.health = d;
+		}
+		
 	}
-	public int getMaxHealth() {
+	public double getMaxHealth() {
 		return maxHealth;
 	}
 	public void setMaxHealth(int maxHealth) {

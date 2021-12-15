@@ -1,9 +1,7 @@
 package gui;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 import constants.ImageHolder;
 import constants.RenderableHolder;
@@ -12,17 +10,19 @@ import entity.Boss;
 import entity.Boss1;
 import entity.Boss2;
 import entity.Boss3;
+import entity.ItemdropFire;
+import entity.ItemdropHealth;
+import entity.ItemdropSnow;
+import entity.ItemdropWater;
 import entity.Player;
 import interfaces.Renderable;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.paint.Color;
 import main.Main;
 import object.base.GameObject;
-import scene.GameCanvasScene;
 import scene.LoseScene;
 import scene.WinScene;
 
@@ -37,8 +37,13 @@ public class GameCanvas extends Canvas{
     private static int currentBoss;
     private static Boss boss;
     private static Player player;
-    private static ProgressBar progBoss;
-    private static ProgressBar progPlayer;
+    public long time;
+    public static final long STARTTIME = System.nanoTime();
+    public static boolean isSpawned1;
+    public static boolean isSpawned2;
+    public static boolean isSpawned3;
+    public static boolean isSpawned4;
+    
 
     
     public GameCanvas() {
@@ -62,12 +67,14 @@ public class GameCanvas extends Canvas{
     }
     
     public void setup() {
-    	progBoss  = new ProgressBar(1);
-    	progPlayer = new ProgressBar(1);
-        this.gc = this.getGraphicsContext2D();
-        this.gameObjects = new ArrayList<GameObject>();
-        this.toAdd = new ArrayList<GameObject>();
-        this.toErase = new ArrayList<GameObject>();
+    	isSpawned1 = false;
+    	isSpawned2 = false;
+    	isSpawned3 = false;
+    	isSpawned4 = false;
+        GameCanvas.gc = this.getGraphicsContext2D();
+        GameCanvas.gameObjects = new ArrayList<GameObject>();
+        GameCanvas.toAdd = new ArrayList<GameObject>();
+        GameCanvas.toErase = new ArrayList<GameObject>();
         this.setWidth(1050.0);
         this.setHeight(600.0);
         player = new Player(new Point2D(525, 500));
@@ -84,8 +91,9 @@ public class GameCanvas extends Canvas{
     public void loop() {
         (this.gameLoop = new AnimationTimer() {
             public void handle(final long now) {
-               GameCanvas.this.drawGameObject();
-               GameCanvas.this.update();
+            	time = (long) (((now - STARTTIME)/1000000000.0));
+            	GameCanvas.this.drawGameObject();
+            	GameCanvas.this.update();
                }
            
         }).start();
@@ -95,6 +103,30 @@ public class GameCanvas extends Canvas{
     	gameObjects.add(obj);
     }
     private void update() {
+    	if(time % 28 == 7 && !isSpawned1) {
+    		isSpawned4 = false;
+    		isSpawned1 = true;
+    		ItemdropFire drop = new ItemdropFire(new Point2D(50, 550));
+    		toBeAdd(drop);
+    	}
+    	if(time % 28 == 14 && !isSpawned2) {
+    		isSpawned1 = false;
+    		isSpawned2 = true;
+    		ItemdropWater drop = new ItemdropWater(new Point2D(1000, 550));
+    		toBeAdd(drop);
+    	}
+    	if(time % 28 == 21 && !isSpawned3) {
+    		isSpawned2 = false;
+    		isSpawned3 = true;
+    		ItemdropSnow drop = new ItemdropSnow(new Point2D(50, 350));
+    		toBeAdd(drop);
+    	}
+    	if(time % 28 == 0 && time != 0 && !isSpawned4) {
+    		isSpawned3 = false;
+    		isSpawned4 = true;
+    		ItemdropHealth drop = new ItemdropHealth(new Point2D(1000, 350));
+    		toBeAdd(drop);
+    	}
         if(RenderableHolder.getInstance().getEntities()!=null) {
             for(Renderable obj: RenderableHolder.getInstance().getEntities()) {
                 obj.update();
@@ -108,7 +140,6 @@ public class GameCanvas extends Canvas{
             toAdd.clear();
             toErase.clear();
         }
-        progBoss.setProgress(boss.getHealth()/boss.getMaxHealth());
         if(boss.getHealth() <= 0) {
         	WinScene forPlay = new WinScene();
         	RenderableHolder.getInstance().getEntities().clear();
@@ -121,6 +152,8 @@ public class GameCanvas extends Canvas{
 			this.gameLoop.stop();
         }
         drawBoss();
+        drawPlayer();
+        //System.out.println(time);
     }
     public static void toBeAdd(GameObject obj) {
     	toAdd.add(obj);
@@ -131,17 +164,12 @@ public class GameCanvas extends Canvas{
     public void drawGameObject() {
     	gc.drawImage(ImageHolder.getInstance().gameBg3, 0, 0);
     	 for ( Renderable go : RenderableHolder.getInstance().getEntities()) {
-    		 go.draw(this.gc);
+    		 go.draw(GameCanvas.gc);
     		 
              
          }
-//        for (final GameObject go : this.gameObjects) {
-//            if (go.isVisible()) {
-//                go.draw(this.gc);
-//            }
-//        }
     }
-    //publc
+
     public void drawBoss() {
     	gc.setLineWidth(2.0);
         gc.setFill(Color.RED);
@@ -154,5 +182,18 @@ public class GameCanvas extends Canvas{
         //gc.setFill(Color.WHITE);
         gc.setStroke(Color.WHITE);
         gc.strokeRoundRect(15, 15, 400, 30, 10, 10);
+    }
+    public void drawPlayer() {
+    	gc.setLineWidth(2.0);
+        gc.setFill(Color.RED);
+        //x, y, width, height, arcWidth, arcHeight
+        gc.fillRoundRect(835, 10, 200, 30, 10, 10);
+        //gc.setLineWidth(1.0);
+        gc.setFill(Color.GREEN);
+        //x, y, width, height, arcWidth, arcHeight
+        gc.fillRoundRect(835, 10, (player.getHealth()/player.getMaxHealth())*200, 30, 10, 10);
+        //gc.setFill(Color.WHITE);
+        gc.setStroke(Color.WHITE);
+        gc.strokeRoundRect(835, 10, 200, 30, 10, 10);
     }
 }

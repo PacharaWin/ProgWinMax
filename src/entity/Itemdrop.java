@@ -11,10 +11,18 @@ public abstract class Itemdrop extends GameObject{
     protected boolean isDestroy;
     protected boolean isVisible;
     protected Image sprite;
+    protected int radius;
     protected int z;
     protected Elemental element;
     
-    
+    public Itemdrop() {
+    	this.radius = 3;
+    	this.isDestroy = false;
+    }
+    		
+    protected boolean collideWith(GameObject other){
+		return Math.hypot(this.getCenter().getX()-other.getCenter().getX(), this.getCenter().getY()-other.getCenter().getY()) <= this.radius+other.getRadius();
+	}
 	public Itemdrop(Point2D position, boolean isStatic, boolean isDestroy, boolean isVisible, Image sprite, int z, Elemental element) {
 		super();
 		this.position = position;
@@ -25,6 +33,7 @@ public abstract class Itemdrop extends GameObject{
 		this.z = z;
 		this.element = element;
 		this.z = PriorityConstant.getInstance().potion;
+		
 	}
 	public Point2D getPosition() {
 		return position;

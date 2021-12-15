@@ -2,11 +2,9 @@ package scene;
 
 
 import gui.Lose;
-import gui.Win;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 public class LoseScene extends Scene
 {

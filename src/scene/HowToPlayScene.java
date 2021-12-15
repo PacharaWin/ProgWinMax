@@ -1,27 +1,29 @@
 package scene;
 
-import gui.PlayMenu;
-import javafx.scene.Parent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.Scene;
 
-public class PlayMenuScene extends Scene
+import gui.HowToPlay;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+
+public class HowToPlayScene extends Scene
 {
     private StackPane stackPane;
-    
-    private PlayMenuScene(final Parent root) {
+    private HowToPlayScene(final Parent root) {
         super(root);
     }
     
-    public PlayMenuScene() {
+    public HowToPlayScene() {
+    	
         this((Parent)new StackPane());
         this.initialize();
+     
     }
     
     private void initialize() {
         //this.setCursor(Cursor.NONE);
         this.setRoot((Parent)(this.stackPane = new StackPane()));
         this.stackPane.setPrefSize(1050, 600);
-        this.stackPane.getChildren().add(new PlayMenu());
+        this.stackPane.getChildren().add(new HowToPlay());
     }
 }

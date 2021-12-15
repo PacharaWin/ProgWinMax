@@ -16,6 +16,7 @@ public class SoundHolder
     public AudioClip shootSound2;
     public AudioClip winBgm;
     public AudioClip loseBgm;
+    public AudioClip pickItemBgm;
     
     static {
         instance = new SoundHolder();
@@ -28,6 +29,7 @@ public class SoundHolder
     public SoundHolder() {
        
         this.bgmMainMenu = this.loadSound("bgmMainMenu", "mp3");
+        this.pickItemBgm = this.loadSound("pickItemBgm", MP3);
         this.bgmFight1 = this.loadSound("bgmFight1", "mp3");
         this.bgmFight2 = this.loadSound("bgmFight2", "mp3");
         this.bgmFight3 = this.loadSound("bgmFight3", "mp3");

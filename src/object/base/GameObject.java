@@ -1,15 +1,27 @@
 package object.base;
 
-import constants.ImageHolder;
+import entity.Elemental;
 import interfaces.IBehaviour;
 import interfaces.Renderable;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
-/*import logic.SystemCache;*/
 
 public abstract class GameObject implements Renderable, IBehaviour {
 	protected Point2D position;
 	protected boolean isDestroy;
+	protected Elemental element;
+	public Elemental getElement() {
+		return element;
+	}
+
+	public void setElement(Elemental element) {
+		this.element = element;
+	}
+
+	public void setDestroy(boolean isDestroy) {
+		this.isDestroy = isDestroy;
+	}
+
 	protected Image sprite;
 	protected double radius;
 	public double getRadius() {
@@ -65,11 +77,4 @@ public abstract class GameObject implements Renderable, IBehaviour {
 		this.z = z;
 	}
 
-	/*public double getWidth() {
-		return this.getSprite().getWidth() * SystemCache.getInstance().gameCanvas.getFactor();
-	}
-
-	public double getHeight() {
-		return this.getSprite().getHeight() * SystemCache.getInstance().gameCanvas.getFactor();
-	}*/
 }

@@ -68,8 +68,6 @@ public abstract class Boss extends GameObject {
 		this.interval = interval;
 	}
 	public void draw(final GraphicsContext gc) {
-        final double x = this.getPosition().getX();
-        final double y = this.getPosition().getY();
         Image image = this.getSprite();
         if (this.getHealth() > 0) {
             image = this.getCurrentImage().get(this.getIdx());
@@ -77,14 +75,6 @@ public abstract class Boss extends GameObject {
         else {
             image = this.getDead();
         }
-        //final double imgX = image.getWidth() * SystemCache.getInstance().gameCanvas.getFactor();
-        //final double imgY = image.getHeight() * SystemCache.getInstance().gameCanvas.getFactor();
-//        if (this.isLeft) {
-//            gc.drawImage(image, x + this.getWidth(), y, -1.0 * imgX, imgY);
-//        }
-//        else {
-//            gc.drawImage(image, x, y, imgX, imgY);
-//        }
         if (this.getInterval() < 0.0) {
             this.setIdx((this.getIdx() + 1) % 4);
             this.setInterval(0.3);

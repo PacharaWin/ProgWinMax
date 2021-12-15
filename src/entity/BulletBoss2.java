@@ -11,7 +11,9 @@ public class BulletBoss2 extends Bullet{
 	public BulletBoss2() {
 		this.currentImage = ImageHolder.getInstance().bulletBoss;
 		this.sprite = ImageHolder.getInstance().bulletBoss.get(1);
-		this.speed = 6;
+		this.speed = 7;
+		this.element = Elemental.WATER;
+		this.damage = 15;
 	}
 	public BulletBoss2(Point2D pos1, Point2D pos2) {
 		this();
@@ -55,6 +57,7 @@ public class BulletBoss2 extends Bullet{
 			if(collideWith(obj) && obj instanceof Player ) {
 				//Boss hp decrease
 				//System.out.println("hit");
+				logic.CalDamage.calculateDamage(this, (Player)obj);
 				GameCanvas.toBeErase(this);
 			}
 		}

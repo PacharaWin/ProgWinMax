@@ -11,7 +11,9 @@ public class BulletBoss3 extends Bullet{
 	public BulletBoss3() {
 		this.currentImage = ImageHolder.getInstance().bulletBoss;
 		this.sprite = ImageHolder.getInstance().bulletBoss.get(2);
-		this.speed = 6;
+		this.speed = 7;
+		this.element = Elemental.SNOW;
+		this.damage = 20;
 	}
 	public BulletBoss3(Point2D pos1, Point2D pos2) {
 		this();
@@ -46,15 +48,13 @@ public class BulletBoss3 extends Bullet{
 
 	@Override
 	public void update() {
-		//System.out.println("shott");
-		//this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()+5));
 		this.setPosition(new Point2D(this.getPosition().getX()+this.getDirection().getX(), this.getPosition().getY()+this.getDirection().getY()));
 		//System.out.println(this.getDirection().getX());
 		for(GameObject obj: GameCanvas.gameObjects) {
 			//System.out.println(obj.getClass());
 			if(collideWith(obj) && obj instanceof Player ) {
-				//Boss hp decrease
 				//System.out.println("hit");
+				logic.CalDamage.calculateDamage(this, (Player)obj);
 				GameCanvas.toBeErase(this);
 			}
 		}

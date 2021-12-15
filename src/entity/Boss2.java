@@ -14,10 +14,12 @@ public class Boss2 extends Boss{
 	private int cnt = 70;
 	public Boss2() {
 		super();
-		this.maxHealth = 1000;
-		this.health = 1000;
+		this.maxHealth = 2500;
+		this.health = 2500;
 		this.setCurrentImage(ImageHolder.getInstance().grims);
 		this.sprite = ImageHolder.getInstance().grims.get(1);
+		this.radius = 80;
+		this.element = Elemental.WATER;
 	}
 	public Boss2(Point2D id) {
 		this();
@@ -77,7 +79,7 @@ public class Boss2 extends Boss{
 		SoundHolder.getInstance().shootSound2.stop();
 		SoundHolder.getInstance().shootSound2.play(0.7);
 		GameCanvas.toBeAdd(bul);
-		cnt=70;
+		cnt=50;
 		
 	}
 

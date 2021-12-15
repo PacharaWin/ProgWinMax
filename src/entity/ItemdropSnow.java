@@ -8,20 +8,19 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import object.base.GameObject;
 
-public class ItemdropFire extends Itemdrop{
+public class ItemdropSnow extends Itemdrop{
 
-	public ItemdropFire(Point2D position, boolean isStatic, boolean isDestroy, boolean isVisible, Image sprite, int z, Elemental element) {
-		super(position, isStatic, isDestroy, isVisible, sprite, z, Elemental.FIRE);
-		this.sprite = ImageHolder.getInstance().potionRed;
-		
+	public ItemdropSnow(Point2D position, boolean isStatic, boolean isDestroy, boolean isVisible, Image sprite, int z, Elemental element) {
+		super(position, isStatic, isDestroy, isVisible, sprite, z, Elemental.SNOW);
+		this.sprite = ImageHolder.getInstance().potionPurple;
 		// TODO Auto-generated constructor stub
 	}
-	public ItemdropFire() {
+	public ItemdropSnow() {
 		super();
-		this.sprite = ImageHolder.getInstance().potionRed;
-		this.element = Elemental.FIRE;
+		this.sprite = ImageHolder.getInstance().potionPurple;
+		this.element = Elemental.SNOW;
 	}
-	public ItemdropFire(Point2D id) {
+	public ItemdropSnow(Point2D id) {
 		this();
 		this.position = id;
 
@@ -44,11 +43,10 @@ public class ItemdropFire extends Itemdrop{
 		for(GameObject obj: GameCanvas.gameObjects) {
 			//System.out.println(obj.getClass());
 			if(collideWith(obj) && obj instanceof Player ) {
-				//System.out.println("hit");
 				SoundHolder.getInstance().pickItemBgm.play();
+				//System.out.println("hit");
 				((Player) obj).setElement(this.element);
 				GameCanvas.toBeErase(this);
-				
 			}
 		}
 		

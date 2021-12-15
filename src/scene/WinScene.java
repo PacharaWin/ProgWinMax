@@ -5,7 +5,6 @@ import gui.Win;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 public class WinScene extends Scene
 {

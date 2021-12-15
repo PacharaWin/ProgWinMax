@@ -9,24 +9,23 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 
 public class Boss1 extends Boss{
 	private int cnt = 70;
 
 	public Boss1() {
 		super();
-		this.maxHealth = 1000;
-		this.health = 1000;
+		this.maxHealth = 3000;
+		this.health = 3000;
 		this.setCurrentImage(ImageHolder.getInstance().wizards);
-		this.sprite = ImageHolder.getInstance().wizards.get(0);
-		this.radius = 100;
+		this.sprite = ImageHolder.getInstance().wizards.get(2);
+		this.radius = 30;
+		this.element = Elemental.FIRE;
 		
 	}
 	public Boss1(Point2D id) {
 		this();
 		this.position = id;
-		this.sprite = ImageHolder.getInstance().wizards.get(0);
 		this.radius = 100;
 	}
 	public Boss1( String description, int health, int maxHealth, int attack, double defense, int speed,

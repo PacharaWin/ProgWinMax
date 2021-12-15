@@ -1,11 +1,7 @@
-// 
-// Decompiled by Procyon v0.5.36
-// 
 
 package scene;
 
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
 
 public class SceneHolder
