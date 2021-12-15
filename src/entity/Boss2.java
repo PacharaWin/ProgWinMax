@@ -16,6 +16,7 @@ public class Boss2 extends Boss{
 		super();
 		this.maxHealth = 2500;
 		this.health = 2500;
+		this.speed = 3;
 		this.setCurrentImage(ImageHolder.getInstance().grims);
 		this.sprite = ImageHolder.getInstance().grims.get(1);
 		this.radius = 80;
@@ -64,10 +65,10 @@ public class Boss2 extends Boss{
 		if(this.getPosition().getX() >= 950) isLeft = true;
 		if(this.getPosition().getX() <= 0) isLeft = false;
 		if(isLeft) {
-			this.setPosition(new Point2D(this.getPosition().getX()-3, this.getPosition().getY()));
+			this.setPosition(new Point2D(this.getPosition().getX()-this.speed, this.getPosition().getY()));
 		}
 		if(!isLeft) {
-			this.setPosition(new Point2D(this.getPosition().getX()+3, this.getPosition().getY()));
+			this.setPosition(new Point2D(this.getPosition().getX()+this.speed, this.getPosition().getY()));
 		} 
 		shoot(this.getCenter(), GameCanvas.getPlayer().getCenter());
 	}

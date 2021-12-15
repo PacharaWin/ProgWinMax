@@ -14,6 +14,7 @@ public class BulletDefault extends Bullet {
 		this.currentImage = ImageHolder.getInstance().bullet;
 		this.sprite = ImageHolder.getInstance().bullet.get(cnt%4);
 		this.element = Elemental.DEFAULT;
+		this.speed = 5;
 	}
 	public BulletDefault(Point2D pos, Elemental e) {
 		this();
@@ -60,7 +61,7 @@ public class BulletDefault extends Bullet {
 
 	@Override
 	public void update() {
-		this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()-5));
+		this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()-this.speed));
 		for(GameObject obj: GameCanvas.gameObjects) {
 			//System.out.println(obj.getClass());
 			if(collideWith(obj) && obj instanceof Boss ) {

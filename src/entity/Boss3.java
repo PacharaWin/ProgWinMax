@@ -15,6 +15,7 @@ public class Boss3 extends Boss{
 	private int cnt = 70;
 	public Boss3() {
 		super();
+		this.speed = 3;
 		this.maxHealth = 4000;
 		this.health = 4000;
 		this.setCurrentImage(ImageHolder.getInstance().golems);
@@ -63,10 +64,10 @@ public class Boss3 extends Boss{
 		if(this.getPosition().getX() >= 950) isLeft = true;
 		if(this.getPosition().getX() <= 0) isLeft = false;
 		if(isLeft) {
-			this.setPosition(new Point2D(this.getPosition().getX()-3, this.getPosition().getY()));
+			this.setPosition(new Point2D(this.getPosition().getX()-this.speed, this.getPosition().getY()));
 		}
 		if(!isLeft) {
-			this.setPosition(new Point2D(this.getPosition().getX()+3, this.getPosition().getY()));
+			this.setPosition(new Point2D(this.getPosition().getX()+this.speed, this.getPosition().getY()));
 		} 
 		shoot(this.getCenter(), GameCanvas.getPlayer().getCenter());
 	}
