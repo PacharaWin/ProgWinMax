@@ -1,7 +1,10 @@
 package entity;
 
+import java.util.List;
+
 import constants.PriorityConstant;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 import object.base.GameObject;
 
 public abstract class Bullet extends GameObject{
@@ -10,9 +13,12 @@ public abstract class Bullet extends GameObject{
     protected double radius;
     protected Point2D direction;
     protected Elemental element;
+    protected List<Image> currentImage;
+    
     
 	public Bullet() {
 		super();
+		this.radius = 5;
 	}
 	public Bullet(double speed, int damage, double radius, Point2D direction, Elemental element) {
 		super();
@@ -22,6 +28,12 @@ public abstract class Bullet extends GameObject{
 		this.direction = direction;
 		this.element = element;
 		this.z = PriorityConstant.getInstance().bullet;
+	}
+	public Point2D getCenter() {
+		return new Point2D(this.getPosition().getX() + this.getRadius(), this.getPosition().getY() + this.getRadius());
+    }
+	protected boolean collideWith(GameObject other){
+		return Math.hypot(this.getCenter().getX()-other.getCenter().getX(), this.getCenter().getY()-other.getCenter().getY()) <= this.radius+other.getRadius();
 	}
 	public double getSpeed() {
 		return speed;
@@ -47,6 +59,16 @@ public abstract class Bullet extends GameObject{
 	public void setDirection(Point2D direction) {
 		this.direction = direction;
 	}
+	public void setDirectionToTarget(final Point2D target) {
+
+        double angle = Math.atan2(target.getX() - this.getPosition().getX(), target.getY() - this.getPosition().getY());
+        angle += 1.5707963267948966;
+        final double x = Math.cos(angle) * -1.0;
+        final double y = Math.sin(angle);
+        double dy = this.speed;
+        double dx = (dy/y)*x;
+        this.direction = new Point2D(dx, dy);
+    }
     
     
 }

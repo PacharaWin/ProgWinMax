@@ -13,10 +13,7 @@ public class ImageHolder
 {
     private static final String PNG = "png";
     private static final ImageHolder instance;
-    public Image bulletFire;
-    public Image bulletWater;
-    public Image bulletDefault;
-    public Image bulletSnow;
+    public List<Image> bullet;
     public Image win;
     public Image lose;
     public List<Image> grims;
@@ -32,6 +29,7 @@ public class ImageHolder
     public Image gameBg4;
     public Image emeraldDragon;
     public List<Image> wizards;
+    public List<Image> bulletBoss;
     
     static {
         instance = new ImageHolder();
@@ -49,19 +47,17 @@ public class ImageHolder
         this.golems = this.loadImageList("golem", PNG, 4);
         this.wizards = this.loadImageList("rogue", PNG, 8);
         this.players = this.loadImageList("player", PNG, 5);
+        this.bulletBoss = this.loadImageList("bulletBoss", PNG, 3);
         this.gameBg1 = this.loadImage("GameBg1", "jpg");
         this.gameBg2 = ImageLogic.resizeImage(loadImage("GameBg2", "jpg"), 1050.0, 600.0);
         this.gameBg3 = ImageLogic.resizeImage(loadImage("GameBg3", "jpg"), 1050.0, 600.0);
-       
         this.gameBg4 = this.loadImage("GameBg4", "jpg");
         this.potionBlue = this.loadImage("blue1", "png");
         this.potionRed = this.loadImage("red1", "png");
         this.potionPurple = this.loadImage("purple1", "png");
         this.potionGreen = this.loadImage("green1", "png");
-        this.bulletDefault = this.loadImage("bulletDefault", "png");
-        this.bulletFire = this.loadImage("bulletFire", "png");
-        this.bulletSnow = this.loadImage("bulletSnow", "png");
-        this.bulletWater = this.loadImage("bulletWater", "png");
+        this.bullet = this.loadImageList("bullet", PNG, 4);
+        
         
         }
     

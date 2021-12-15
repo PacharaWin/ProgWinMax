@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-
+import scene.SceneHolder;
 import constants.SoundHolder;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -42,6 +42,7 @@ public class Win extends BorderPane{
     	
     	SoundHolder.getInstance().bgmFight1.stop();
 		SoundHolder.getInstance().winBgm.play(0.1);
+		//System.out.println("win");
     	this.bottomMenu = new HBox();
     	this.nextBox = new VBox();
     	try(InputStream is = Files.newInputStream(Paths.get("res/GameBg3.jpg"))){
@@ -69,6 +70,7 @@ public class Win extends BorderPane{
 		}
 		 backBtn.setFont(Font.font("Consolas", FontWeight.SEMI_BOLD, 50));
     	 backBtn.setOnMouseClicked(e ->{
+    		System.out.println("click");
          	MainMenuScene forBack = new MainMenuScene();
          	Main.sceneHolder.switchScene(forBack);
          });

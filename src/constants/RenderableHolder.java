@@ -5,21 +5,21 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import interfaces.IRenderable;
+import interfaces.Renderable;
 
 public class RenderableHolder {
     private static final RenderableHolder instance = new RenderableHolder();
 
-    private List<IRenderable> entities;
-    private Comparator<IRenderable> comparator;
+    private List<Renderable> entities;
+    private Comparator<Renderable> comparator;
     
     static {
         loadResource();
     }
 
     public RenderableHolder() {
-        entities = new ArrayList<IRenderable>();
-        comparator = (IRenderable o1, IRenderable o2) -> {
+        entities = new ArrayList<Renderable>();
+        comparator = (Renderable o1, Renderable o2) -> {
             if (o1.getZ() > o2.getZ())
                 return 1;
             return -1;
@@ -33,8 +33,11 @@ public class RenderableHolder {
     public static void loadResource() {
         
     }
-
-    public void add(IRenderable entity) {
+    public void remove(Renderable entity) {
+    	System.out.println("remove");
+        entities.remove(entity);
+    }
+    public void add(Renderable entity) {
         System.out.println("add");
         entities.add(entity);
         Collections.sort(entities, comparator);
@@ -48,7 +51,7 @@ public class RenderableHolder {
         }
     }
 
-    public List<IRenderable> getEntities() {
+    public List<Renderable> getEntities() {
         return entities;
     }
 }

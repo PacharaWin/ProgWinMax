@@ -12,12 +12,11 @@ import object.base.GameObject;
 public abstract class Boss extends GameObject {
 	protected String name;
     protected String description;
-    protected int health;
-    protected int maxHealth;
+    protected double health;
+    protected double maxHealth;
     protected int attack;
     protected double defense;
     protected int speed;
-    protected Point2D center;
     protected int idx;
     protected List<Image> currentImage;
     protected Image dead;
@@ -37,8 +36,11 @@ public abstract class Boss extends GameObject {
 	}
 	public Boss() {
     	this.name = "Boss";
+    	this.radius = 100;
 		
 	}
+	public abstract void shoot(Point2D pos1, Point2D pos2);
+
 	public Boss(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
 			Point2D center, int idx, List<Image> currentImage, Image dead, ProgressBar healthBar, Elemental element) {
 		super();
@@ -49,13 +51,13 @@ public abstract class Boss extends GameObject {
 		this.attack = attack;
 		this.defense = defense;
 		this.speed = speed;
-		this.center = center;
 		this.idx = idx;
 		this.currentImage = currentImage;
 		this.dead = dead;
 		this.healthBar = healthBar;
 		this.element = element;
 		this.z = PriorityConstant.getInstance().boss;
+		this.radius = 100;
 		
 	}
 	
@@ -103,16 +105,16 @@ public abstract class Boss extends GameObject {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getHealth() {
+	public double getHealth() {
 		return health;
 	}
-	public void setHealth(int health) {
+	public void setHealth(double health) {
 		this.health = health;
 	}
-	public int getMaxHealth() {
+	public double getMaxHealth() {
 		return maxHealth;
 	}
-	public void setMaxHealth(int maxHealth) {
+	public void setMaxHealth(double maxHealth) {
 		this.maxHealth = maxHealth;
 	}
 	public int getAttack() {
@@ -132,12 +134,6 @@ public abstract class Boss extends GameObject {
 	}
 	public void setSpeed(int speed) {
 		this.speed = speed;
-	}
-	public Point2D getCenter() {
-		return center;
-	}
-	public void setCenter(Point2D center) {
-		this.center = center;
 	}
 	public int getIdx() {
 		return idx;

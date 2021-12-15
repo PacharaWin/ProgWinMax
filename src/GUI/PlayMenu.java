@@ -90,10 +90,11 @@ public class PlayMenu extends BorderPane{
         playBtn.setFont(Font.font("Consolas", FontWeight.SEMI_BOLD, 50));
         backBtn.setFont(Font.font("Consolas", FontWeight.SEMI_BOLD, 50));
         playBtn.setOnMouseClicked(e -> {
+        	GameCanvas.setCurrentBoss(idx);
         	GameCanvasScene forPlay = new GameCanvasScene();
 			Main.sceneHolder.switchScene(forPlay);
 			SoundHolder.getInstance().bgmMainMenu.stop();
-			SoundHolder.getInstance().bgmFight1.play(0.2);
+			SoundHolder.getInstance().bgmFight1.play(0.1);
         });
         backBtn.setOnMouseClicked(e ->{
         	MainMenuScene forBack = new MainMenuScene();

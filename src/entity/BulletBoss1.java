@@ -1,26 +1,26 @@
 package entity;
 
 import constants.ImageHolder;
-import constants.SoundHolder;
 import gui.GameCanvas;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import object.base.GameObject;
 
-public class BulletDefault extends Bullet {
+public class BulletBoss1 extends Bullet{
 
-	private static int cnt = 0;
-	public BulletDefault() {
-		this.currentImage = ImageHolder.getInstance().bullet;
-		this.sprite = ImageHolder.getInstance().bullet.get(cnt%4);
-		cnt++;
+	public BulletBoss1() {
+		this.currentImage = ImageHolder.getInstance().bulletBoss;
+		this.sprite = ImageHolder.getInstance().bulletBoss.get(0);
+		this.speed = 6;
 	}
-	public BulletDefault(Point2D pos) {
+	public BulletBoss1(Point2D pos1, Point2D pos2) {
 		this();
-		this.position = pos;
-		this.damage = 100;
+		this.position = pos1;
+		this.currentImage = ImageHolder.getInstance().bulletBoss;
+		this.sprite = ImageHolder.getInstance().bulletBoss.get(0);
+		this.setDirectionToTarget(pos2);
 	}
-	public BulletDefault(double speed, int damage, double radius, Point2D direction, Elemental element) {
+	public BulletBoss1(double speed, int damage, double radius, Point2D direction, Elemental element) {
 		super(speed, damage, radius, direction, element);
 		// TODO Auto-generated constructor stub
 	}
@@ -46,19 +46,20 @@ public class BulletDefault extends Bullet {
 
 	@Override
 	public void update() {
-		this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()-5));
+		//System.out.println("shott");
+		//this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()+5));
+		this.setPosition(new Point2D(this.getPosition().getX()+this.getDirection().getX(), this.getPosition().getY()+this.getDirection().getY()));
+		//System.out.println(this.getDirection().getX());
 		for(GameObject obj: GameCanvas.gameObjects) {
 			//System.out.println(obj.getClass());
-			if(collideWith(obj) && obj instanceof Boss ) {
+			if(collideWith(obj) && obj instanceof Player ) {
 				//Boss hp decrease
 				//System.out.println("hit");
-				((Boss) obj).setHealth(((Boss) obj).getHealth() - this.damage);
 				GameCanvas.toBeErase(this);
 			}
 		}
-		if(this.getPosition().getY() < 0) {
+		if(this.getPosition().getY() > 600) {
 			GameCanvas.toBeErase(this);
-			System.out.println("erase");
 		}
 		
 	}
@@ -68,6 +69,5 @@ public class BulletDefault extends Bullet {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }

@@ -3,6 +3,8 @@ package entity;
 import java.util.List;
 
 import constants.ImageHolder;
+import constants.SoundHolder;
+import gui.GameCanvas;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ProgressBar;
@@ -10,17 +12,22 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 public class Boss1 extends Boss{
+	private int cnt = 70;
 
 	public Boss1() {
 		super();
+		this.maxHealth = 1000;
+		this.health = 1000;
 		this.setCurrentImage(ImageHolder.getInstance().wizards);
 		this.sprite = ImageHolder.getInstance().wizards.get(0);
+		this.radius = 100;
 		
 	}
 	public Boss1(Point2D id) {
 		this();
-		this.center = id;
+		this.position = id;
 		this.sprite = ImageHolder.getInstance().wizards.get(0);
+		this.radius = 100;
 	}
 	public Boss1( String description, int health, int maxHealth, int attack, double defense, int speed,
 			Point2D center, int idx, List<Image> currentImage, Image dead, ProgressBar healthBar, Elemental element) {
@@ -40,17 +47,8 @@ public class Boss1 extends Boss{
         final double imgX = sprite.getWidth();
             final double imgY = sprite.getHeight();
             gc.drawImage(this.getSprite(), x, y, imgX, imgY);
-            System.out.println(x);
-		
-		
+            //System.out.println(x);
 	}
-
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	@Override
 	public void update() {
 		//System.out.println("Boss");
@@ -62,9 +60,25 @@ public class Boss1 extends Boss{
 		if(!isLeft) {
 			this.setPosition(new Point2D(this.getPosition().getX()+3, this.getPosition().getY()));
 		} 
-		
+		shoot(this.getCenter(), GameCanvas.getPlayer().getCenter());
         
 		
+	}
+	public void shoot(Point2D pos1, Point2D pos2) {
+		cnt--;
+		if(cnt > 0) return;
+		BulletBoss1 bul = new BulletBoss1(pos1, pos2);
+		SoundHolder.getInstance().shootSound2.stop();
+		SoundHolder.getInstance().shootSound2.play(0.7);
+		GameCanvas.toBeAdd(bul);
+		cnt=70;
+		
+	}
+	
+	@Override
+	public boolean isVisible() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
@@ -81,6 +95,7 @@ public class Boss1 extends Boss{
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 	
 

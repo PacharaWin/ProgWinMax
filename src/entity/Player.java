@@ -6,6 +6,8 @@ import java.util.List;
 import constants.GameConstant;
 import constants.ImageHolder;
 import constants.PriorityConstant;
+import constants.RenderableHolder;
+import constants.SoundHolder;
 import gui.GameCanvas;
 import input.InputUtility;
 import javafx.animation.AnimationTimer;
@@ -30,7 +32,6 @@ public class Player extends GameObject{
     protected int attack;
     protected double defense;
     protected int speed;
-    protected Point2D center;
     protected int idx;
     protected List<Image> currentImage;
     protected Image dead;
@@ -53,7 +54,6 @@ public class Player extends GameObject{
     	this.attack = 50;
     	this.defense = 10;
     	this.speed = 10;
-    	this.center = new Point2D(500,300);
     	this.isLeft = false;
     	this.isMoving = false;
     	this.sprite = ImageHolder.getInstance().players.get(0);
@@ -61,10 +61,13 @@ public class Player extends GameObject{
 	    hero = new ImageView(heroImage);
 	    
     }
+    
     public Player(Point2D pos) { 
     	this();
     	this.setPosition(pos);
+    	this.radius = 40;
     }
+    
 	public Player(String name, String description, int health, int maxHealth, int attack, double defense, int speed,
 			Point2D center, int idx, List<Image> currentImage, Image dead, boolean isLeft, boolean isMoving,
 			boolean isSkillActive, double interval, double cooldown, int skillManaUse) {
@@ -76,7 +79,6 @@ public class Player extends GameObject{
 		this.attack = attack;
 		this.defense = defense;
 		this.speed = speed;
-		this.center = center;
 		this.idx = idx;
 		this.currentImage = currentImage;
 		this.dead = dead;
@@ -100,9 +102,8 @@ public class Player extends GameObject{
         final double imgX = sprite.getWidth();
             final double imgY = sprite.getHeight();
             gc.drawImage(this.getSprite(), x, y, imgX, imgY);
-            System.out.println(x);
-        
-        
+            //System.out.println(x);
+
     }
 	@Override
 	public boolean isVisible() {
@@ -112,22 +113,7 @@ public class Player extends GameObject{
 	@Override
 	public void update() {
 		ArrayList<KeyCode> keyPressed = GameConstant.keyPressed;
-		/*if (InputUtility.getKeyPressed(KeyCode.W)) {
-			this.setCenter(center.subtract(0, -1));
-		}
-		if (InputUtility.getKeyPressed(KeyCode.A)) {
-			this.setCenter(center.subtract(1, 0));
-		} else if (InputUtility.getKeyPressed(KeyCode.D)) {
-			this.setCenter(center.subtract(-1, 0));
-		}
-		if (InputUtility.getKeyPressed(KeyCode.S)) {
-			this.setCenter(center.subtract(0, 1));
-		}
-		if (InputUtility.isLeftClickTriggered()) {
-			//this.x = InputUtility.mouseX;
-			//this.y = InputUtility.mouseY;
-		}*/
-		System.out.println("Test");
+		//System.out.println("Test");
 		if (keyPressed.contains(KeyCode.A) && this.getPosition().getX()>-20) {
 			this.setPosition(new Point2D(this.getPosition().getX()-4, this.getPosition().getY()));
         }
@@ -140,9 +126,26 @@ public class Player extends GameObject{
         if (keyPressed.contains(KeyCode.D)&& this.getPosition().getX()<980) {
         	this.setPosition(new Point2D(this.getPosition().getX()+4, this.getPosition().getY()));
         }
+        if(keyPressed.contains(KeyCode.SPACE)) {
+			shoot();
+			
+		}
         
 	}
+	private int cnt = 28;
 	private void shoot() {
+		cnt--;
+		if(cnt > 0) return;
+		BulletDefault bul = new BulletDefault(this.getPosition());
+		SoundHolder.getInstance().shootSound1.stop();
+		SoundHolder.getInstance().shootSound1.play(0.7);
+		/*new Thread(
+			
+			
+		, "t").start();*/
+		GameCanvas.toBeAdd(bul);
+		cnt=28;
+		//System.out.println(cnt);
 		
 	}
 	private void moveHeroBy(int dx, int dy) {
@@ -214,12 +217,6 @@ public class Player extends GameObject{
 	}
 	public void setSpeed(int speed) {
 		this.speed = speed;
-	}
-	public Point2D getCenter() {
-		return center;
-	}
-	public void setCenter(Point2D center) {
-		this.center = center;
 	}
 	public int getIdx() {
 		return idx;

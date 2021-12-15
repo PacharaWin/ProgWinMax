@@ -6,7 +6,7 @@ package interfaces;
 
 import javafx.scene.canvas.GraphicsContext;
 
-public interface IRenderable
+public interface Renderable
 {
     int getZ();
     
