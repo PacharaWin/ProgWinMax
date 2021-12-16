@@ -1,15 +1,17 @@
 package object.base;
 
 import entity.Elemental;
-import interfaces.IBehaviour;
 import interfaces.Renderable;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 
-public abstract class GameObject implements Renderable, IBehaviour {
+public abstract class GameObject implements Renderable {
 	protected Point2D position;
 	protected boolean isDestroy;
 	protected Elemental element;
+	protected Image sprite;
+	protected double radius;
+
 	public Elemental getElement() {
 		return element;
 	}
@@ -22,8 +24,6 @@ public abstract class GameObject implements Renderable, IBehaviour {
 		this.isDestroy = isDestroy;
 	}
 
-	protected Image sprite;
-	protected double radius;
 	public double getRadius() {
 		return radius;
 	}
@@ -32,14 +32,14 @@ public abstract class GameObject implements Renderable, IBehaviour {
 		this.radius = radius;
 	}
 
-	protected int z;
 	public Point2D getCenter() {
 		return new Point2D(this.getPosition().getX() + this.getRadius(), this.getPosition().getY() + this.getRadius());
-    	
-    }
+
+	}
+
 	public GameObject() {
 		this.position = new Point2D(0.0, 0.0);
-		//this.sprite = ImageHolder.getInstance().nothing;
+		// this.sprite = ImageHolder.getInstance().nothing;
 		this.isDestroy = false;
 	}
 
@@ -68,13 +68,9 @@ public abstract class GameObject implements Renderable, IBehaviour {
 		this.sprite = sprite;
 	}
 
-	@Override
 	public int getZ() {
-		return this.z;
-	}
-
-	public void setZ(final int z) {
-		this.z = z;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

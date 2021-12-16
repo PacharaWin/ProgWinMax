@@ -6,7 +6,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import object.base.GameObject;
 
-public class BulletBoss1 extends Bullet{
+public class BulletBoss1 extends Bullet {
 
 	public BulletBoss1() {
 		this.currentImage = ImageHolder.getInstance().bulletBoss;
@@ -15,6 +15,7 @@ public class BulletBoss1 extends Bullet{
 		this.damage = 15;
 		this.element = Elemental.FIRE;
 	}
+
 	public BulletBoss1(Point2D pos1, Point2D pos2) {
 		this();
 		this.position = pos1;
@@ -22,6 +23,7 @@ public class BulletBoss1 extends Bullet{
 		this.sprite = ImageHolder.getInstance().bulletBoss.get(0);
 		this.setDirectionToTarget(pos2);
 	}
+
 	public BulletBoss1(double speed, int damage, double radius, Point2D direction, Elemental element) {
 		super(speed, damage, radius, direction, element);
 		// TODO Auto-generated constructor stub
@@ -30,47 +32,33 @@ public class BulletBoss1 extends Bullet{
 	@Override
 	public void draw(GraphicsContext gc) {
 		final double x = this.getPosition().getX();
-        final double y = this.getPosition().getY();
-        
-        
-        final double imgX = this.sprite.getWidth();
-            final double imgY = sprite.getHeight();
-            gc.drawImage(this.getSprite(), x, y, imgX, imgY);
-            //System.out.println(x);
-		
-	}
+		final double y = this.getPosition().getY();
 
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return false;
+		final double imgX = this.sprite.getWidth();
+		final double imgY = sprite.getHeight();
+		gc.drawImage(this.getSprite(), x, y, imgX, imgY);
+		// System.out.println(x);
+
 	}
 
 	@Override
 	public void update() {
-		//System.out.println("shott");
-		//this.setPosition(new Point2D(this.getPosition().getX(), this.getPosition().getY()+5));
-		this.setPosition(new Point2D(this.getPosition().getX()+this.getDirection().getX(), this.getPosition().getY()+this.getDirection().getY()));
-		//System.out.println(this.getDirection().getX());
-		for(GameObject obj: GameCanvas.gameObjects) {
-			//System.out.println(obj.getClass());
-			if(collideWith(obj) && obj instanceof Player ) {
-				//Boss hp decrease
-				//System.out.println("hit");
-				logic.CalDamage.calculateDamage(this, (Player)obj);
+		this.setPosition(new Point2D(this.getPosition().getX() + this.getDirection().getX(),
+				this.getPosition().getY() + this.getDirection().getY()));
+		// System.out.println(this.getDirection().getX());
+		for (GameObject obj : GameCanvas.gameObjects) {
+			// System.out.println(obj.getClass());
+			if (collideWith(obj) && obj instanceof Player) {
+				// Boss hp decrease
+				// System.out.println("hit");
+				logic.CalDamage.calculateDamage(this, (Player) obj);
 				GameCanvas.toBeErase(this);
 			}
 		}
-		if(this.getPosition().getY() > 600) {
+		if (this.getPosition().getY() > 600) {
 			GameCanvas.toBeErase(this);
 		}
-		
-	}
 
-	@Override
-	public void positionValueCorrection() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

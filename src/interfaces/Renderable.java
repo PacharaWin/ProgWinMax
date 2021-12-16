@@ -6,15 +6,12 @@ package interfaces;
 
 import javafx.scene.canvas.GraphicsContext;
 
-public interface Renderable
-{
-    int getZ();
-    
-    void draw(final GraphicsContext p0);
-    
-    boolean isVisible();
-    
-    boolean isDestroy();
-    
-    void update();
+public interface Renderable {
+	int getZ();
+
+	void draw(final GraphicsContext p0);
+
+	boolean isDestroy();
+
+	void update();
 }

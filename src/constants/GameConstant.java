@@ -6,8 +6,8 @@ import javafx.scene.input.KeyCode;
 
 public class GameConstant {
 	public static final ArrayList<KeyCode> keyPressed = new ArrayList<KeyCode>();
-	
+
 	public GameConstant() {
-		
+
 	}
 }

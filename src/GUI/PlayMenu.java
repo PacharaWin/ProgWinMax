@@ -19,6 +19,7 @@ import javafx.scene.text.FontWeight;
 import main.Main;
 import scene.GameCanvasScene;
 import scene.MainMenuScene;
+
 public class PlayMenu extends BorderPane {
 	private VBox nextBox;
 	private VBox prevBox;
@@ -70,7 +71,7 @@ public class PlayMenu extends BorderPane {
 			SoundHolder.getInstance().bgmMainMenu.stop();
 			SoundHolder.getInstance().bgmFight1.play(0.1);
 		});
-		
+
 		backBtn.setOnMouseClicked(e -> {
 			MainMenuScene forBack = new MainMenuScene();
 			Main.sceneHolder.switchScene(forBack);
