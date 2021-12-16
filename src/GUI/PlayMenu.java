@@ -55,7 +55,7 @@ public class PlayMenu extends BorderPane {
 		} catch (IOException e) {
 			System.out.println("Couldn't load image");
 		}
-		Title title = new Title("Chaos Wizard");
+		Title title = new Title("Ember Wizard");
 		title.setTranslateX(0);
 		title.setTranslateY(50);
 		this.setTop(title);

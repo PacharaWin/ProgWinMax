@@ -24,7 +24,6 @@ public class BulletBoss3 extends Bullet {
 		this.setDirectionToTarget(pos2);
 	}
 
-
 	@Override
 	public void draw(GraphicsContext gc) {
 		final double x = this.getPosition().getX();
