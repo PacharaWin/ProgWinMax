@@ -37,11 +37,6 @@ public class BulletDefault extends Bullet {
 		this.damage = 100;
 	}
 
-	public BulletDefault(double speed, int damage, double radius, Point2D direction, Elemental element) {
-		super(speed, damage, radius, direction, element);
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	public void draw(GraphicsContext gc) {
 		final double x = this.getPosition().getX();

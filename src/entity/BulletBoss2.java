@@ -24,10 +24,6 @@ public class BulletBoss2 extends Bullet {
 		this.setDirectionToTarget(pos2);
 	}
 
-	public BulletBoss2(double speed, int damage, double radius, Point2D direction, Elemental element) {
-		super(speed, damage, radius, direction, element);
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
